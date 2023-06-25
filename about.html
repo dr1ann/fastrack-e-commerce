@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FasTrack</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>   
+    <link rel="stylesheet" href="{% static 'about.css' %}" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="icon" href="{% static 'PICO-LOGO-SHORT.png' %}" type="image/gif">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color:white
+}
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.company {
+  animation: slide-right 1.2s ease-out;
+        padding: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding-top: 60px;
+  --c: black; /* the color */
+  --b: .1em;    /* border length*/
+  --d: 20px;    /* the cube depth */
+  
+  --_s: calc(var(--d) + var(--b));
+  
+  color: var(--c);
+  border: solid #40DFDF;
+  border-width: var(--b) var(--b) var(--_s) var(--_s);
+  background:
+    conic-gradient(at left var(--d)  bottom var(--d),
+    white 90deg, #00FFFF 0 225deg,#00FFFF 0) border-box,
+    conic-gradient(at left var(--_s) bottom var(--_s),
+    white 90deg,var(--c) 0) 0 100%/calc(100% - var(--b)) calc(100% - var(--b))  border-box;
+  transform: translate(calc(var(--d)/-1),var(--d));
+  clip-path: 
+    polygon(
+     var(--d) 0%, 
+     var(--d) 0%, 
+     100% 0%, 
+     100% calc(100% - var(--d)),
+     100% calc(100% - var(--d)),
+     var(--d) calc(100% - var(--d))
+    );
+  transition: 0.5s;
+  
+}
+
+.company-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img {
+  width: 100%;
+  margin: 1rem 0rem 0rem 2rem;
+}
+
+.img img {
+  width: 100%;
+}
+
+.company-info {
+  width: 100%;
+  margin-right: 4rem;
+}
+
+.company-info span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  
+}
+
+.company-info span .our {
+  color: #49989e;
+}
+
+.company-info p{
+    text-align: justify;
+    font-weight: bold;
+  font-size: 1.1rem;
+  
+  
+}
+
+.card:hover {
+  transform: translate(0,0);
+  clip-path: 
+    polygon(
+     0% var(--d), 
+     var(--d) 0%, 
+     100% 0%, 
+     100% calc(100% - var(--d)), 
+     calc(100% - var(--d)) 100%, 
+     0% 100%
+   );
+}
+.company:hover {
+  transform: translate(0,0);
+  clip-path: 
+    polygon(
+     0% var(--d), 
+     var(--d) 0%, 
+     100% 0%, 
+     100% calc(100% - var(--d)), 
+     calc(100% - var(--d)) 100%, 
+     0% 100%
+   );
+}
+/* ----------------------------------------------- */
+
+.team {
+  display: flex;
+  justify-content: center;
+}
+
+.team span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-bottom: 4px solid #49989e;
+}
+
+.container1 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  
+}
+.card {
+  position: relative;
+  background: #fff;
+  max-width: 350px;
+  width: 350px;
+  height: 500px;
+  margin: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 2px;
+  background-color: transparent;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  display: flex;
+  flex-direction: column;
+  --c: black; /* the color */
+  --b: .1em;    /* border length*/
+  --d: 20px;    /* the cube depth */
+  
+  --_s: calc(var(--d) + var(--b));
+  
+  color: var(--c);
+  border: solid #40DFDF;
+  border-width: var(--b) var(--b) var(--_s) var(--_s);
+  background:
+    conic-gradient(at left var(--d)  bottom var(--d),
+    white 90deg, #00FFFF 0 225deg,#00FFFF 0) border-box,
+    conic-gradient(at left var(--_s) bottom var(--_s),
+    white 90deg,var(--c) 0) 0 100%/calc(100% - var(--b)) calc(100% - var(--b))  border-box;
+  transform: translate(calc(var(--d)/-1),var(--d));
+  clip-path: 
+    polygon(
+     var(--d) 0%, 
+     var(--d) 0%, 
+     100% 0%, 
+     100% calc(100% - var(--d)),
+     100% calc(100% - var(--d)),
+     var(--d) calc(100% - var(--d))
+    );
+  transition: 0.5s;
+  /* common properties */
+ 
+}
+
+
+
+.card-image {
+    background-color: #40DFDF;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
+  justify-content: center;
+  text-align: center;
+ 
+}
+
+.card-image img {
+    border-radius:30% 70% 63% 37% / 30% 35% 65% 70%  ;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
+  max-width: 100%;
+  height: auto;
+  
+  
+}
+
+
+
+.yellow-surname {
+  color: #49989e;
+}
+
+
+
+
+
+.card-info {
+  position: relative;
+  color: #222;
+  background-color: white;
+ 
+  padding: 20px;
+}
+
+.card-info h3 {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card-info h4 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.card-info a {
+  text-decoration: none;
+  color: navy;
+}
+
+.card-info p {
+text-align: center;
+  text-justify: inter-word;
+  font-size: 16px;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 6;
+-webkit-box-orient: vertical;
+}
+
+.card-info .card-mediaIcons {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-info .card-mediaIcons a {
+  color: #999;
+  font-size: 1.4em;
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: color 0.3s ease;
+  background-color: black;
+}
+
+.card-info .card-mediaIcons a:hover {
+  color: #49989e;
+}
+
+.card-mediaIcons a img {
+  width: 40px;
+}
+
+.loading {
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+}
+
+.loading:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: loading 1.5s infinite;
+}
+
+.info {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ------------------------------footer---------------------------------------- */
+
+/* ------------------------------------------media-footer------------------------------------------- */
+@media (max-width: 900px) {
+  .company-info {
+    width: 100%;
+    margin-right: 0rem;
+    margin-left: 1rem;
+  }
+  .company-info p{
+    margin-right: 2rem;
+    text-align: center;
+  }
+  .company-info span {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .team {
+    display: flex;
+    justify-content: center;
+  }
+
+  .team span {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+  .company {
+    display: flex;
+    flex-direction: column;
+  }
+  .img {
+    margin-left: 0rem;
+  }
+  footer .content .link-boxes {
+    flex-wrap: wrap;
+  }
+  footer .content .link-boxes .input-box {
+    width: 40%;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 700px) {
+  footer {
+    position: relative;
+  }
+  .content .top .logo-details {
+    font-size: 26px;
+  }
+  .content .top .media-icons a {
+    height: 35px;
+    width: 35px;
+    font-size: 14px;
+    line-height: 35px;
+  }
+  footer .content .link-boxes .box {
+    width: calc(100% / 3 - 10px);
+  }
+  footer .content .link-boxes .input-box {
+    width: 60%;
+  }
+  .bottom-details .bottom_text span,
+  .bottom-details .bottom_text a {
+    font-size: 12px;
+  }
+}
+@media (max-width: 520px) {
+  footer::before {
+    top: 145px;
+  }
+  footer .content .top {
+    flex-direction: column;
+  }
+  .content .top .media-icons {
+    margin-top: 16px;
+  }
+  footer .content .link-boxes .box {
+    width: calc(100% / 2 - 10px);
+  }
+  footer .content .link-boxes .input-box {
+    width: 100%;
+  }
+}
+@media(max-width:320px){
+  .company-info p{
+    margin-right: 0rem;
+  }
+}
+nav .navbar-top {
+    max-width: 1600px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#gg {
+          
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+          display:inline-block;
+        margin-left: 10px;
+          cursor:pointer;
+          color:#ffffff;
+          font-family:sans-serif;
+          font-size:17px;
+          font-weight:bold;
+          padding:5px 18px;
+       
+          text-decoration:none;
+          text-shadow: 0px 1px 0px black;
+              }
+              #gg:hover {
+                background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+          background-color:#378de5;
+              }
+              #gg:active {
+                position:relative;
+          top:1px;
+              }
+              .fa-arrow-circle-left {
+                padding-right: 8px;
+              }
+              .company span {
+                text-align: center;
+                font-size: 60px;
+                padding-bottom: 20px;
+              }
+          
+              
+
+
+/* ---------------------------------------------------------------------------- */
+  </style>
+
+</head>
+  
+  <body>
+    <br>
+    <a href="index.html" id="gg"><i class="fas fa-arrow-circle-left"></i>Home</a>
+    
+    <br>
+    <br>
+    <!-- -----------------------------------------------company---------------------------------------------------------------- -->
+    <div class="company" >
+      <div class="img">
+        <img src="images/ecommerce-service.png" alt="" />
+      </div>
+      <div class="company-info">
+        <span>ABOUT<span class="our">    US</span></span>
+        <p>
+           We, a group of students at <b></b>STI College Ormoc</b>, have developed an e-commerce app specifically tailored to our local community. Our app aims to provide fast and efficient delivery service within our city, making it easier for residents to shop for their everyday needs. We understand the challenges of finding reliable delivery options and we believe that our app addresses this issue by connecting customers with local merchants. We believe that by supporting local businesses and providing a convenient shopping experience, we can strengthen our community and foster economic growth. We are excited to launch our app and invite residents to try it out and see the difference for themselves. 
+        </p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------team-------------------------------------------------------------- -->
+  
+    <div class="team" ><span>OUR TEAM</span></div>
+    <div class="container1" data-aos="fade-up" >
+      <div class="card" >
+        <div class="card-image  loading"><img src="images/member1.png" alt="" /></div>
+        <div class="card-info">
+          <h3 class="card-title loading"><span>Buentheo Nathaniel <span class="yellow-surname">Noval</span> </span></h3>
+          <p class="card-description loading">
+            <span class="personal-info">
+              <!-- <span class="info">Pambansang igop</span> <br> -->
+              Grade-12 ICT student, 18 years old. Pursuing opportunities, cooperation and growing professionally is a important contribution to make companies grow in the online business industry. <br>
+            
+            </span>
+          </p>
+          
+          <div class="card-mediaIcons">
+            <a href="https://www.facebook.com/profile.php?id=100072349582451" class="loading" target="on_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:Ethannoval99@gmail.com" class="loading" target="on_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/natz_zushui/" class="loading" target="on_blank"><i
+                class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-image loading"><img src="images/member2.png" alt="" /></div>
+        <div class="card-info">
+          <h3 class="card-title loading"><span>James Adrian <span class="yellow-surname">Denoy</span></span></h3>
+          <p class="card-description loading">
+            <span class="personal-info">
+              <!-- <span class="info">Graphic Designing Head</span> <br> -->
+              Grade 12-ICT student, 17 years old. Pursuing a 'BSIT' degree in college. Aspiring to be a Software Engineer and constantly learning to improve skills.<br>
+              
+            </span>
+          </p>
+          <div class="card-mediaIcons">
+            <a href="https://www.facebook.com/jamesdenoy12/" class="loading" target="on_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:jamesdenoy56@gmail.com" class="loading" target="on_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/dr1annnnnnn/" class="loading" target="on_blank"><i
+                class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-image loading"><img src="images/member3.png" alt="" /></div>
+        <div class="card-info">
+          <h3 class="card-title loading"><span>Manuel Alberto <span class="yellow-surname">Tan</span></span></h3>
+          <p class="card-description loading">
+            <span class="personal-info">
+              <!-- <span class="info">Web Developing Head</span> <br> -->
+             Grade-12 ICT student, 18 years old. I wish to pursue my college years with a course I wish to choose, contemplating whether I take music course or in the medical field. <br>
+            
+            </span>
+          </p>
+          <div class="card-mediaIcons">
+            <a href="#" onclick="window.open('https://web.facebook.com/itsMabeTan')"; class="loading" target="on_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:jamesdenoy56@gmail.com" class="loading" target="on_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/dr1annnnnnn/" class="loading" target="on_blank"><i
+                class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="moreAnimate"data-aos="fade-up">
+      <div class="card">
+        <div class="card-image loading"><img src="images/member5.png" alt="" /></div>
+        <div class="card-info">
+          <h3 class="card-title loading"><span>Andres <span class="yellow-surname">Manili</span></span></h3>
+          <p class="card-description loading">
+            <span class="personal-info">
+              <!-- <span class="info">Graphic Designing Head</span> <br> -->
+              Grade-12 ICT student, 18 years old. I am pursuing my dreams by taking computer-related courses that will help me reach my ultimate goal of becoming a successful game developer. <br>
+             
+            </span>
+          </p>
+          <div class="card-mediaIcons">
+            <a href="https://web.facebook.com/plsdie.1" class="loading" target="on_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:maniliandres00@gmail.com" class="loading" target="on_blank"><i class="fas fa-envelope"></i></a>
+            <a href="#" class="loading" target="on_blank"><i
+                class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="moreAnimate"data-aos="fade-up">
+      <div class="card">
+        <div class="card-image loading"><img src="images/member4.png" alt="" /></div>
+        <div class="card-info">
+          <h3 class="card-title loading"><span>Mark Andrew <span class="yellow-surname">Laurente</span></span></h3>
+          <p class="card-description loading">
+            <span class="personal-info">
+              <!-- <span class="info">Marketing and Publicity Head</span> <br> -->
+              Grade-12 ICT student, 17 years old. Pursuing medicine with the goal of providing for my family and giving my younger relatives their own opportunities. <br>
+            
+            </span>
+          </p>
+          <div class="card-mediaIcons">
+            <a href="#" onclick="window.open('https://web.facebook.com/mark.pabilona.125')"; class="loading" target="on_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:markandrewlaurente18@gmail.com" class="loading" target="on_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/dr1annnnnnn/" class="loading" target="on_blank"><i
+                class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+    <!-- ----------------------------------------footer------------------------------------------ -->
+     
+
+    <!-- ---------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------------- -->
+  <script type="module">
+ AOS.init({
+  duration: 1500,
+})
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword,  signOut, sendSignInLinkToEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+  import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+ const firebaseConfig =  {
+    apiKey: "AIzaSyCtisSJKA9OIYxI3B9tbtWEGg0PKiI0Vks",
+    authDomain: "loginpage-fa237.firebaseapp.com",
+    databaseURL: "https://loginpage-fa237-default-rtdb.firebaseio.com",
+    projectId: "loginpage-fa237",
+    storageBucket: "loginpage-fa237.appspot.com",
+    messagingSenderId: "709059025327",
+    appId: "1:709059025327:web:a45e1c21fc088473fd375a",
+    measurementId: "G-3664V8SZKB"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  const database = getDatabase();
+
+  </script>
+  </html>

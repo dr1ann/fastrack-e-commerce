@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FasTrack</title>
+  <script src="sadsa.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    #gg {
+          
+          box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+  margin-bottom: 25px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:1px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+
+        }
+        #gg:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        #gg:active {
+          position:relative;
+	top:1px;
+        }
+     .button {
+            
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+	display:inline-block;
+  margin: auto;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 50px;
+  width: 100%;
+	text-decoration:none;
+  padding-top: 10px;
+
+}
+.button:hover {
+  background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+button:active {
+          position:relative;
+	top:1px;
+        }
+
+ * {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  background-color: white !important;
+  font-family:  helvetica, arial, sans-serif;
+  font-size: 1.5em;
+  
+}
+ 
+@-webkit-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-moz-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-ms-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-o-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+body:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url(data:image/png;base64,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);
+  opacity: 0.3;
+}
+
+.login-form {
+  width: 200%;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  height: 100%;
+  border-radius: 20px;
+  position: relative;
+  background: #d1e4e4;
+  display: block;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+
+}
+
+.login-form:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+ 
+}
+@media screen and (min-width: 600px) {
+  .login-form {
+    width: 50vw;
+    max-width: 15em;
+  }
+}
+
+.flex-row {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.lf--label {
+  width: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f6f8;
+  cursor: pointer;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding-left: 5px;
+}
+
+.lf--input {
+  flex: 1;
+  padding: 1em;
+  border: 0;
+  color: black;
+  font-size: 1rem;
+  height: 18px; /* or any other fixed value */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.lf--input:focus {
+  outline: none;
+  transition: transform 0.15s ease;
+  transform: scale(1.0);
+}
+
+.lf--submit {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  background: linear-gradient(to right, #35c3c1, #00d6b7);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.lf--submit:focus {
+  outline: none;
+  transition: transform 0.15s ease;
+  transform: scale(1.1);
+}
+
+.lf--signup {
+
+
+  font-size: 0.65em;
+float: right;
+ 
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+
+}
+.policy {
+  
+
+  color: black;
+font-size: 16px;
+  text-align: center;
+ 
+ 
+  text-decoration: none;
+ 
+  
+}
+.policy a {
+  color:#49989e;
+  font-weight: bold;
+  text-decoration: underline;
+}
+::-moz-placeholder {
+  color: #8f8f8f;
+}
+
+:-ms-input-placeholder {
+  color: #8f8f8f;
+}
+
+::placeholder {
+  color: #8f8f8f;
+}
+.showPass {
+  position: fixed;
+  right: 85%;
+  bottom: 36%;
+  
+  
+}
+#togglePassword {
+  width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f6f8;
+    cursor: pointer;
+   
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(28, 154, 147, 0.8) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  
+    background-color: white;
+    border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;
+
+   
+}
+
+
+#password1 {
+    border-top-right-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
+}
+#password {
+    border-top-right-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
+}
+#togglePassword1 {
+
+   width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f6f8;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(28, 154, 147, 0.8) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+form p  {
+
+  margin-right: auto;
+ 
+    display: block;
+    margin: auto;
+    cursor: pointer;
+   
+    background-color: white;
+   
+}
+span {
+  font-size: 15px;
+}
+h1 {
+text-align: center;
+  font-size:larger;
+  color: black;
+}
+  img .em {
+  left:13%;
+  position: absolute;
+  size: 20px;
+ }
+ 
+ #adminicon {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  margin: 10px;
+  width: 80px;
+  cursor: pointer;
+}
+
+
+#confirm {
+  margin-bottom: 15px !important;
+}
+
+input {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+</style>
+</head>
+<body>
+
+  
+  <form class='login-form'>
+   
+    <img id="adminicon" src="images/logo.png">
+    <h1>Sign Up</h1>
+  
+    <div class="flex-row">
+      <label class="lf--label" for="fname">
+        <i class="fas fa-user"></i>
+        
+      </label>
+     
+      <input id="fname" class='lf--input' placeholder='First name' autocomplete="off" type='text'>
+    </div>
+      
+      
+    </div>
+    <div class="flex-row">
+      <label class="lf--label" for="lname">
+        <i class="fas fa-user"></i>
+        
+      </label>
+     
+      <input id="lname" class='lf--input' autocomplete="off" placeholder='Last name' type='text'>
+    </div>
+      
+      
+    </div>
+      
+    </div>
+    <div class="flex-row">
+      <label class="lf--label" for="email">
+        <i class="far fa-envelope"></i>
+        
+      </label>
+     
+      <input id="email" name="email" autocomplete="off" class='lf--input' placeholder='Email' type='email'>
+    </div>
+    <div class="flex-row">
+      <label class="lf--label" for="password">
+        <i class="fas fa-lock"></i>
+      </label>
+      <input id="password" name="password" class='lf--input' placeholder='Password' type='password'><i  class="bi bi-eye-slash"  id="togglePassword"></i></input>
+      
+      
+    </div>
+    <div class="flex-row" id="confirm">
+      <label class="lf--label" for="password">
+        <i class="fas fa-shield-alt"></i>
+      </label>
+      <input id="password1" name="password" class='lf--input' placeholder='Confirm Password' type='password'>  <i  class="bi bi-eye-slash"  id="togglePassword1"></i>
+    
+      
+    </div>
+
+  <span id="wrong_pass_alert"></span>
+  
+  <button type="button" id="submitData" name="submitData" class="button">Sign up
+    </button>
+  
+    <br>
+    <br>
+    <a class='lf--signup' href='log.html'>Have an account? Login</a>
+    <br>
+    <br>
+    
+    <div class="policy">By signing up, you agree to FasTrack's <br> <a href="#" onclick="window.open('terms&conditions.html');">Terms & Conditions</div>
+   
+
+    <!-- The Modal -->
+   
+  </form>
+ 
+<script type="module">
+  //show password
+ 
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#password");
+
+  togglePassword.addEventListener("click", function () {
+      // toggle the type attribute
+      const type = password.getAttribute("type") === "password" ? "text" : "password";
+      password.setAttribute("type", type);
+      
+      // toggle the icon
+      this.classList.toggle("bi-eye");
+      
+  });
+  const togglePassword1 = document.querySelector("#togglePassword1");
+  const password1 = document.querySelector("#password1");
+
+  togglePassword1.addEventListener("click", function () {
+      // toggle the type attribute
+      const type = password1.getAttribute("type") === "password" ? "text" : "password";
+      password1.setAttribute("type", type);
+      
+      // toggle the icon for confim password
+      this.classList.toggle("bi-eye");
+      
+  });
+
+  
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+  import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCtisSJKA9OIYxI3B9tbtWEGg0PKiI0Vks",
+    authDomain: "loginpage-fa237.firebaseapp.com",
+    databaseURL: "https://loginpage-fa237-default-rtdb.firebaseio.com",
+    projectId: "loginpage-fa237",
+    storageBucket: "loginpage-fa237.appspot.com",
+    messagingSenderId: "709059025327",
+    appId: "1:709059025327:web:a45e1c21fc088473fd375a",
+    measurementId: "G-3664V8SZKB"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const database = getDatabase();
+  const submitData = document.getElementById('submitData')
+  submitData.addEventListener('click', (e) => {
+    e.preventDefault();
+    const confirmpass = document.getElementById("password1").value;
+  
+    var fname = document.getElementById('fname').value;
+    var lname = document.getElementById('lname').value;
+      var email = document.getElementById('email').value;
+var password = document.getElementById('password').value;
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if (fname == "") {
+        swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+}) 
+      return false;
+    } 
+    else if (lname == "") {
+    swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+}) 
+      return false;
+}  
+else if (email == "") {
+    swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+}) 
+      return false;
+}  
+else if (!mailformat.test(email)) {
+    swal({
+title: 'Oops!',
+text: " \"Email\" is invalid. Please Try again.",
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+}) 
+      return false;
+}  
+else if (password == "") {
+    swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+}) 
+      return false;
+}  
+else if (confirmpass == "") {
+    swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+}) 
+      return false;
+} 
+ else {
+createUserWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+// Signed in 
+const user = userCredential.user;
+updateProfile(auth.currentUser, {
+                displayName: fname +" " + lname
+                
+            })
+// ...
+
+const displayName = user.displayName;
+var now = new Date();
+var options = { 
+  hour: 'numeric', 
+  minute: 'numeric', 
+  hour12: true 
+};
+var time = now.toLocaleString('en-US', options);
+var date = now.toLocaleDateString('en-US');
+var dateTime = time + ' ' + date;
+set(ref(database, 'users/' + 'User Info/' + user.uid), {
+email: email,
+First_Name: fname,
+Last_Name: lname,
+Date_created: dateTime,
+Account_Type: "User",
+Cart: "empty"
+});
+
+swal({
+title: "Successful",
+text: 'Proceeding to set Delivery Address',
+type: "success",
+timer: 2000,
+showConfirmButton: false
+}, function(){
+  let keepLoggedIn = document.getElementById("submitData");
+
+if(!keepLoggedIn) {
+  
+  window.location="index.html";
+} else {
+  localStorage.setItem('keepLoggedIn', 'yes');
+  localStorage.setItem('New User', JSON.stringify(user));
+  
+  window.location="address.html";
+}
+
+});
+
+      })
+      
+      .catch((error) => {
+          swal({
+title: 'Oops!',
+imageUrl: 'images/incorrect.png',
+  imageHeight: 1500,
+text: (error),
+
+})
+  })
+ }
+});
+
+const back = document.getElementById('adminicon');
+    back.addEventListener('click', function(event) {
+event.preventDefault();
+    
+        
+    
+        window.location = 'index.html'
+    
+    })
+
+    const passwordInput = document.getElementById('password1');
+passwordInput.addEventListener('keyup', () => {
+  validate_password();
+});
+const submitPass = document.getElementById('submitData');
+submitData.addEventListener('click', () => {
+ wrong_pass_alert();
+});
+    function validate_password() {
+ 
+ var pass = document.getElementById('password').value;
+ var confirm_pass = document.getElementById('password1').value;
+ if (pass != confirm_pass) {
+     document.getElementById('wrong_pass_alert').style.color = '#FF5733';
+     document.getElementById('wrong_pass_alert').innerHTML
+       = '☒ Passwords did not match. Try again.';
+     document.getElementById('submitData').disabled = true;
+     document.getElementById('submitData').style.cursor = "not-allowed"
+     document.getElementById('submitData').style.opacity = (0.4);
+ } 
+//  else if(confirm_pass == "") {
+//      swal({
+//          title: 'Oops!',
+//          text: " \"Confirm Password\" can't be empty. Please Try again.",
+//          imageUrl: 'images/incorrect.png',
+//            imageHeight: 1500,
+//          }) 
+//      return false;
+//  }
+  else {
+     document.getElementById('wrong_pass_alert').style.color = '#009900';
+     document.getElementById('wrong_pass_alert').innerHTML =
+         '🗹 Passwords Matched';
+     document.getElementById('submitData').disabled = false;
+     document.getElementById('submitData').style.cursor = "pointer"
+     document.getElementById('submitData').style.opacity = (1);
+ }
+}
+
+function wrong_pass_alert() {
+ if (document.getElementById('password').value != "" &&
+     document.getElementById('password1').value != "") {
+             
+     }
+}
+</script>
+</body>
+
+</html>

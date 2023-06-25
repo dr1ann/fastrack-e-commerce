@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- HTML code for the product-detail-page.html -->
+<h1>Product Details</h1>
+
+<div>
+  <h2>Category: <span id="category"></span></h2>
+  <h3>Item ID: <span id="itemId"></span></h3>
+  <p>Description: <span id="description"></span></p>
+  <p>Price: <span id="price"></span></p>
+  <p>Product Name: <span id="productName"></span></p>
+  <p>Seller: <span id="seller"></span></p>
+  <p>Stock: <span id="stock"></span></p>
+  <img src="" alt="" id="mainImage">
+</div>
+
+<script>
+  // Retrieve the saved item data from the session storage
+  const selectedItem = JSON.parse(sessionStorage.getItem('selectedItem'));
+
+  // Display the item data on the page
+  document.getElementById('category').textContent = selectedItem.category;
+  document.getElementById('itemId').textContent = selectedItem.itemId;
+  document.getElementById('description').textContent = selectedItem.data.Description;
+  document.getElementById('price').textContent = selectedItem.data.Price;
+  document.getElementById('productName').textContent = selectedItem.data.Product_Name;
+  document.getElementById('seller').textContent = selectedItem.data.Seller;
+  document.getElementById('stock').textContent = selectedItem.data.Stock;
+  document.getElementById('mainImage').src = selectedItem.data.Main_image;
+</script>
+
+</body>
+</html>

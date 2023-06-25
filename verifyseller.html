@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FasTrack</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white
+}
+
+#contact {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  margin-top: 50px;
+}
+
+.contact-box {
+  width: clamp(100px, 90%, 1000px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contact-links, .contact-form-wrapper {
+  width: 50%;
+ 
+  padding-right: 5%;
+
+  padding-bottom: 10%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+
+.contact-links {
+  background-color: #40DFDF;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  
+}
+.contact-links h2 {
+    color: black;
+}
+.contact-form-wrapper {
+  background-color: #d1e4e4!important;
+  border-radius: 0 10px 10px 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .contact-links, .contact-form-wrapper {
+    width: 100%;
+  }
+  
+  .contact-links {
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .contact-form-wrapper {
+    border-radius: 0 0 10px 10px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .contact-box {
+    width: 95%;
+    margin: 8% 5%;
+  }
+}
+
+h2 {
+  font-family: 'Arimo', sans-serif;
+  color: #fff;
+  
+  font-size: clamp(30px, 6vw, 60px);
+  letter-spacing: 2px;
+  text-align: center;
+  transform: scale(.95, 1);
+}
+.fa-phone-alt {
+    padding-right: 12px;
+}
+/* .links {
+    border-bottom: 1px solid #00FFFF ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 50px;
+  margin-left: 7%;
+} */
+
+.link {
+  margin: 10px;
+  cursor: pointer;
+}
+
+img {
+  width: 45px;
+  height: 45px;
+
+  transition: 0.2s;
+  user-select: none;
+}
+
+img:hover {
+  transform: scale(1.1, 1.1);
+}
+
+img:active {
+  transform: scale(1.1, 1.1);
+  filter: 
+    hue-rotate(220deg)
+    drop-shadow(2px 4px 4px #222)
+    sepia(0.3);
+}
+
+.form-item {
+  position: relative;
+}
+
+label, input, textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+label {
+  position: absolute;
+  top: 10px;
+  left: 2%;
+  color: #999;
+  font-size: clamp(14px, 1.5vw, 18px);
+  pointer-events: none;
+  user-select: none;
+}
+
+input, textarea {
+  width: 100%;
+  outline: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: clamp(15px, 1.5vw, 18px);
+}
+
+input:focus+label, 
+input:valid+label, 
+textarea:focus+label, 
+textarea:valid+label {
+  font-size: clamp(13px, 1.3vw, 16px);
+  color: #777;
+  top: -20px;
+  transition: all .225s ease;
+}
+
+.submit-btn {
+  background-color: #49989e;
+  filter: drop-shadow(2px 2px 3px #0003);
+  color: white;
+  font-family: "Poppins",sans-serif;
+  font-size: clamp(16px, 1.6vw, 18px);
+  display: block;
+  padding: 12px 20px;
+  margin: 2px auto;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  transform: scale(1.1, 1.1);
+  
+}
+
+.submit-btn:active {
+  transform: scale(1.1, 1.1);
+  filter: sepia(0.5);
+}
+
+@media only screen and (max-width: 800px) {
+  h2 {
+    font-size: clamp(40px, 10vw, 60px);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  h2 {
+    font-size: clamp(30px, 12vw, 60px);
+  }
+  
+  .links {
+    padding-top: 30px;
+  }
+  
+  img {
+   width: 50%;
+   height: 50%;
+   
+  }
+}
+
+.contact-links p {
+  text-align: center;
+  padding-top: 12px;
+  margin-left: 7%;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#gg {
+          margin-left: 20px;
+          
+                
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+          display:block;
+       margin-top: 20px;
+       margin-bottom: 30px;
+       
+          cursor:pointer;
+          color:#ffffff;
+          font-family:sans-serif;
+          font-size:17px;
+          font-weight:bold;
+          padding:5px 15px;
+      
+          text-decoration:none;
+         
+              }
+              #gg:hover {
+                background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+          background-color:#378de5;
+              }
+              #gg:active {
+                position:relative;
+          top:1px;
+              }
+              .fa-arrow-circle-left {
+                padding-right: 8px;
+              }
+              #seller {
+                width: 60%;
+                height: 40%;
+              display: block;
+              margin: 0 auto;
+              padding-left: 7%;
+              }
+             #start {
+               font-size: 45px;
+               font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+              }
+              #changeMargin {
+              margin-top: 100px;
+             }
+             .contact-form-wrapper {
+              padding-left: 5%;
+             }
+             #adminicon {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    width: 80px;
+    height: auto !important;
+    cursor: pointer;
+}
+#start {
+margin-left: auto !important;
+}
+.sweet-alert button.cancel {
+  background-color: red !important;
+}
+.sweet-alert button.confirm {
+  background-color: #378de5 !important;
+}
+.sweet-alert p {
+  color: black !important;
+}
+</style>
+<body>
+  
+ 
+    <section id="contact">
+    
+
+        <div class="contact-box">
+          
+          <div class="contact-links">
+            <button id="gg"><i class="fas fa-arrow-circle-left"></i>Account</button>
+            <img id="seller" src="images/online-seller-icon.png" alt="">
+
+            <p id="start"><img id="adminicon" src="images/logo.png"> Start Selling</p>
+            <p>Thank you for your interest in becoming a seller on our ecommerce platform. To get started, we need to gather some information from you. Please fill out the form. This information will be used to verify your identity and set up your seller account. We appreciate your cooperation in providing accurate and complete information, and we look forward to helping you succeed as a seller on our platform.
+
+            </p>
+            <div class="links">
+             
+            </div>
+          </div>
+          <div class="contact-form-wrapper">
+            <form>
+              <div class="form-item" id="changeMargin">
+                <input type="text" autocomplete="off" name="sender" id="name"  required>
+                <label>Full Name:</label>
+              </div>
+              <div class="form-item">
+                <input type="text" autocomplete="off" name="sender" id="shopName" required>
+                <label>Shop Name:</label>
+              </div>
+              <div class="form-item">
+                <input autocomplete="off" name="email" id="email" required>
+                <label>Email:</label>
+              </div>
+              <div class="form-item">
+                <input name="message" autocomplete="off" id="pNum" required></input>
+                <label>Phone Number:</label>
+              </div>
+              
+              <button class="submit-btn" id="send">Next</button>  
+            </form>
+          </div>
+        </div>
+      </section>
+      
+            <script type="module">
+        const home = document.getElementById('gg');
+
+        home.addEventListener("click", function(e) {
+            e.preventDefault();
+            window.location = "accIfLoggedIn.html"
+        })
+        window.onload = function() {
+  onAuthStateChanged(auth, (user) => {
+
+    if (user == null) {
+    window.location = "index.html";
+    } 
+})
+    }
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+         import { getAuth, signInWithEmailAndPassword,  signOut, updateProfile, sendSignInLinkToEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+         import { getDatabase, set, ref, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+         // TODO: Add SDKs for Firebase products that you want to use
+         // https://firebase.google.com/docs/web/setup#available-libraries
+       
+         // Your web app's Firebase configuration
+         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+         const firebaseConfig = {
+           apiKey: "AIzaSyCtisSJKA9OIYxI3B9tbtWEGg0PKiI0Vks",
+           authDomain: "loginpage-fa237.firebaseapp.com",
+           databaseURL: "https://loginpage-fa237-default-rtdb.firebaseio.com",
+           projectId: "loginpage-fa237",
+           storageBucket: "loginpage-fa237.appspot.com",
+           messagingSenderId: "709059025327",
+           appId: "1:709059025327:web:a45e1c21fc088473fd375a",
+           measurementId: "G-3664V8SZKB"
+         };
+       
+         // Initialize Firebase
+       const app = initializeApp(firebaseConfig);
+         const auth = getAuth(app);
+         const database = getDatabase();
+         
+         const send = document.querySelector('#send');
+       
+         send.addEventListener('click', function (event) {
+          event.preventDefault();
+          const name = document.getElementById('name').value;
+          const shopName = document.getElementById('shopName').value;
+         const email = document.getElementById('email').value;
+         const phone = document.getElementById('pNum').value;
+         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+         const regex = /^(09|\+639)\d{9}$/;
+         var now = new Date();
+var options = { 
+  hour: 'numeric', 
+  minute: 'numeric', 
+  hour12: true 
+};
+var time = now.toLocaleString('en-US', options);
+var date = now.toLocaleDateString('en-US');
+var dateTime = time + ' ' + date;
+
+         if (name == "") {
+        swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+type: "error"
+})
+      return false;
+    }
+    else if (shopName == "") {
+        swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+type: "error"
+})
+      return false;
+    }
+    else if (email == "") {
+        swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+type: "error"
+})
+      return false;
+    }
+    else if (!mailformat.test(email)) {
+        swal({
+title: 'Oops!',
+text: "\"Email\" is invalid. Please Try again.",
+type: "error"
+})
+      return false;
+    }
+    else if (phone == "") {
+    swal({
+title: 'Oops!',
+text: "Input Fields can't be empty. Please Try again.",
+type: "error"
+})
+      return false;
+    
+  }
+     else if (!regex.test(phone)) {
+    swal({
+title: 'Oops!',
+text: "Invalid \"Phone Number\". Please Try again.",
+type: "error"
+})
+      return false;
+    
+  }
+    
+    else {
+        onAuthStateChanged(auth, (user) => {
+    //   let randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+update(ref(database, 'Seller/' + user.uid ), 
+{
+        
+  Full_Name : name,
+  Shop_Name: shopName,
+  email: email,
+  Phone_Num: phone,
+ Status: "Pending",
+
+  Date_Requested:dateTime,
+  })
+  update(ref(database, 'users/User Info/' + user.uid ), 
+{
+        
+  Account_Type: "User and Seller",
+  })
+
+.then (() => {
+    window.location = 'verifyid.html';
+
+
+})
+    
+  
+})
+  
+} 
+
+
+})
+        </script>
+        
+</body>
+</html>

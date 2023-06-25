@@ -1,0 +1,2581 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link type="text/css" href="CSS/main.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="images/logo.png">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+         <script src="sadsa.js"> </script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+        <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+        <title>FasTrack</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Titillium Web", sans-serif;
+    list-style-type: none;
+}
+.g {
+    text-align: center;
+}
+html {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    background-color: rgba(95, 95, 255, 0.7);
+}
+
+body::webkit-scrollbar {
+    display: none;
+}
+
+a {
+    color: black;
+    line-height: 1;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* clears the 'X' from Internet Explorer */
+input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+/*Navbar*/
+nav {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* logo , my account and shopping cart */
+nav .navbar-top {
+    max-width: 1600px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar-top .logo {
+    position: absolute;
+    top: 30px;
+    left: 100px;
+    width: 150px;
+    height: 75px;
+}
+
+#menuButton {
+    width: 45px;
+    height: 40px;
+    cursor: pointer;
+    color: #49989e;
+    background: transparent;
+    border: none;
+    display: none;
+    font-size: 1.5rem;
+}
+
+#menuButton:focus {
+    outline: none;
+}
+
+#menuButton:hover {
+    color: #0d3c3f;
+}
+
+/* container of my account and shopping cart */
+.navbar-top > div {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+/* My account text*/
+.account-text {
+    font-size: 0.9rem;
+    padding: 10px;
+}
+.account-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.account-btn:focus {
+    outline: none;
+}
+
+.navbar-top .shopping-cart {
+    margin-left: 10px;
+    font-size: 1.4rem;
+}
+
+.shopping-cart .sum-prices {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#sum-prices {
+    padding-left: 5px;
+}
+
+.sum-prices h6 {
+    font-size: 0.9rem;
+}
+
+.shoppingCartButton {
+    cursor: pointer;
+}
+
+.shoppingCartButton:hover,
+.account:hover * {
+    color: #0e5e53;
+}
+
+.producstOnCart {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    background-color: #202020;
+    width: 300px;
+    height: 500px;
+    color: #f0f0f0;
+    z-index: 15;
+    position: fixed;
+    top: 20px;
+    right: 0;
+    text-align: center;
+    animation: fade 1s;
+}
+
+.producstOnCart::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes fade {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+.producstOnCart::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.hide {
+    display: none;
+    visibility: none;
+}
+
+.producstOnCart ul {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.producstOnCart .buyItem {
+    border-bottom: #aaa 1px solid;
+    width: 90%;
+    padding: 10px 0;
+    display: flex;
+}
+
+.producstOnCart img {
+    width: 90px;
+}
+
+.producstOnCart .top {
+    display: flex;
+    background-color: #616161;
+    text-align: center;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.top button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    color: #c24c37;
+    cursor: pointer;
+}
+
+.top button:hover {
+    color: #e40505;
+}
+
+.top h3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+}
+
+.producstOnCart > .checkout {
+    font-size: 0.9rem;
+    margin: 20px auto;
+    border: none;
+    background-color: #297075;
+    padding: 10px 20px;
+    color: #eee;
+    cursor: pointer;
+}
+
+.overlay {
+    overflow: hidden;
+    display: inline-block;
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.stopScrolling {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.buyItem h6 {
+    margin-bottom: 10px;
+}
+
+.buyItem button {
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 0 6px;
+    border: none;
+}
+
+.buyItem button:active {
+    color: #96c8cc;
+}
+
+.buyItem > div {
+    padding: 0 20px;
+}
+
+.producstOnCart .empty {
+    justify-self: center;
+    margin: 150px auto;
+}
+
+.price {
+    color: black;
+    margin-top: 10px;
+    align-items: center;
+    padding: 5px;
+    right: 14%;
+    font-size: 20px;
+    font-weight: bold;
+    
+    top: 40%;
+}
+
+.navbar {
+    max-width: 1600px;
+    width: 88vw;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.searchbar form {
+    position: absolute;
+    right: 17px;
+    top: 27.5px;
+    transform: translate(0%, -50%);
+    transition: all 1s;
+    width: 40px;
+    height: 40px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 1px solid #555;
+    padding: 5px;
+}
+
+.searchbar > form input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    line-height: 20px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.searchbar form:hover {
+    width: 300px;
+    cursor: pointer;
+}
+
+.searchbar form:hover input {
+    display: block;
+}
+
+.searchbar input::placeholder {
+    color: #242424;
+    font-size: 0.8em;
+}
+
+.searchbar > form:hover #search-icon {
+    background: #07051a;
+    color: white;
+}
+
+#search-icon {
+    box-sizing: border-box;
+    padding: 8px;
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1rem;
+    transition: all 1s;
+}
+
+#search-icon:active,
+#search-icon:focus {
+    outline: none;
+}
+
+.links {
+    position: relative;
+    display: inline-blo;
+    margin: auto;
+}
+
+.links ul {
+    display: flex;
+    flex-direction: row;
+}
+
+ul .nav-links {
+    cursor: pointer;
+    color: #333333;
+    text-align: center;
+    padding: 15px;
+}
+
+.nav-links > a:visited,
+.navbar-top > a:visited {
+    color: #333333;
+}
+
+.link {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.nav-links:hover .link {
+    color: #24738b;
+    text-decoration: underline;
+}
+
+.navbarResponsive .links {
+    margin: 5px;
+}
+
+.navbarResponsive ul {
+    flex-direction: column;
+    text-align: left;
+}
+
+.navbarResponsive .searchbar form {
+    position: relative;
+    margin-left: 50px;
+}
+
+.navbarResponsive .nav-links {
+    text-align: left;
+}
+
+.navbarResponsive .nav-links > .link {
+    z-index: 15;
+    color: white;
+}
+
+#hearderSlide {
+    background-color: #49989e;
+    height: 55vh;
+    position: relative;
+}
+
+#hearderSlide .MS-content {
+    margin: 0 1%;
+    white-space: nowrap; /* required */
+    overflow: hidden; /* required */
+    height: 100%;
+}
+
+#hearderSlide .item {
+    display: inline-block;
+    width: 33.3333%; /* required * Determines number of visible slides */
+    position: relative; /* required */
+    vertical-align: top; /* required */
+    overflow: hidden; /* required */
+    height: 100%; /* recommended */
+    white-space: normal;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+}
+
+#hearderSlide .MS-controls .MS-left {
+    border: none;
+    left: 10px;
+}
+#hearderSlide .MS-controls .MS-right {
+    border: none;
+    right: 10px;
+}
+
+.MS-right:focus,
+.MS-left:focus {
+    outline: none;
+}
+
+.MS-right:active,
+.MS-left:active {
+    color: #fff;
+    background-color: #49989e;
+}
+
+#hearderSlide .MS-right {
+    position: absolute;
+    font-weight: bolder;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#hearderSlide .MS-left {
+    font-weight: bolder;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+    background-color: rgba(41, 193, 186, 1);
+}
+
+.main-section {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+}
+
+.product-container {
+    max-width: 1600px;
+    margin: auto;
+    width: 88vw;
+    position: relative;
+    
+}
+.main-section h3 {
+    font-size: 40px;
+    padding: 50px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-top: 55px;
+}
+
+.product {
+    position: relative;
+    text-align: center;
+    height: 350px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.product-under {
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, /* soft blue shadow */ rgba(28, 154, 147, 0.8) 0px 30px 60px -30px, /* teal shadow */ rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin: auto !important;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.product-over {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation-name: show_top;
+    animation-duration: 1s;
+    backdrop-filter: blur(5px);
+}
+@keyframes show_top {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.product-image:hover .product-over {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image {
+    position: relative;
+    height: 62%;
+    background-color:transparent;
+    
+}
+
+.product-image img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding: 30px;
+}
+*{
+    font-family: sans-serif;
+}
+
+
+.product-summary {
+    font-size: 0.9rem;
+    position: relative;
+    padding: 10px 5px;
+    height: 38%;
+}
+
+.product-summary > .price {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+.stars {
+    display: block;
+    width: 110px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    padding: 5px;
+}
+
+.stars::after {
+    content: "\2605 \2605 \2605 \2605 \2605";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 65%;
+    display: block;
+    font-size: 1.4rem;
+    color: #dabd3b;
+    overflow: hidden;
+}
+
+.stars::before {
+    content: "\2606 \2606 \2606 \2606 \2606";
+    display: block;
+    margin: auto;
+    font-size: 1.4rem;
+    color: #7e6c1f;
+}
+
+/* Buttons style */
+.btn {
+    background-color:#00FFFF;
+    padding: 15px 50px 15px 30px;
+    color: #141414;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.btn:active {
+    box-shadow: none;
+}
+
+.btn > .fa-angle-right {
+    font-size: 40px;
+    position: absolute;
+    left: 85%;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: right 0.5s;
+}
+
+.btn:hover .fa-angle-right {
+    font-size: 40px;
+    position: absolute;
+    right: 20px;
+}
+
+.btn i {
+    margin: 0 5px;
+}
+
+.pop-mobiles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+}
+
+.pop-mobiles-1 {
+    background: rgba(41, 193, 186, 1);;
+    overflow: hidden;
+    width: 100%;
+    height: 600px;
+    margin-bottom: 30px;
+    position: relative;
+    padding: 0;
+   
+}
+
+.pop-mobiles-1 > figure {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 49%;
+}
+
+.pop-mobiles-1 img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+    background-color: rgba(41, 193, 186, 1);
+    border-radius: 49px;
+    
+box-shadow:  10px 10px 10px #00FFFF,
+             -35px -35px 50px #00FFFF;
+}
+.pop-mobiles-1:hover .btn {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+    background-color: #00FFFF;
+}
+.pop-mobiles-1 > div {
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    z-index: 10;
+    width: 40%;
+    height: 100%;
+    text-align: left;
+    background-color: rgba(41, 193, 186, 1);
+}
+.pop-mobiles-1 h4 {
+    
+    color: black;
+    text-decoration: underline;
+    font-size: 35px;
+    background-color: rgba(41, 193, 186, 1);
+}
+h4 {
+    font-weight: bold;
+}
+.pop-mobiles-1 h2 {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.pop-mobiles-1 .btn {
+    display: inline-block;
+    margin-top: 50px;
+    margin: 50px 0;
+    font-size: 45px;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+    border-radius: 109px;
+box-shadow:  35px 35px 70px #6c6c6c,
+             -35px -35px 70px #00FFFF;
+    background-color: rgba(41, 193, 186, 1);
+   
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.btn-newMobile {
+    background-color: white;
+    color: #49989e;
+    box-shadow: 3px 3px 5px #4e4e4e;
+    z-index: 10;
+    background-color: rgba(41, 193, 186, 1);
+}
+
+.pop-mobiles-2 {
+    width: 55%;
+}
+
+.pop-mobiles-2 .products {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pop-mobiles-2 .product {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.pop-mobiles-2 img {
+    width: 55%;
+    margin: auto;
+}
+
+.btn-small {
+    border: none;
+    font-size: 0.9rem;
+    width: 60%;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 2px 2px 2px #49989e;
+    color: black;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.btn-small:hover {
+    background-color: #49989e;
+    color: white;
+}
+
+footer {
+    overflow: hidden;
+    background-color: #eee;
+    border-radius: 2px;
+}
+
+footer .footer-second {
+    width: 100%;
+    display: block;
+    padding: 50px 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.footer-second a {
+    display: block;
+    margin: 5px auto;
+    width: 50%;
+    padding: 5px;
+    font-size: 0.9rem;
+}
+
+.footer-second h3 {
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.footer-second a:hover {
+    color: #045e52;
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+.footer-column-1 {
+    width: calc(33.33333%);
+    float: left;
+}
+
+.footer-column-2 {
+    width: calc(33.33333%);
+    float: left;
+}
+
+.footer-column-3 {
+    width: calc(33.33333%);
+    float: left;
+}
+
+.footer-last {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.footer-last li {
+    margin: 0 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    nav .navbar-top {
+        padding: 0;
+    }
+
+    nav {
+        justify-content: left;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    #hearderSlide .item {
+        display: inline-block;
+        width: 100%;
+    }
+    .navbar-top .logo {
+        width: 100px;
+        float: left;
+    }
+
+    #menuButton {
+        display: inline;
+    }
+
+    .navbar {
+        background-color: #141414;
+        width: 400px;
+        height: 55vh;
+        z-index: 10;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        transform: translateX(-500px);
+    }
+
+    .navbarResponsive {
+        transition: transform 0.5s;
+        flex-direction: column;
+        transform: translateX(0);
+    }
+
+    .navbarResponsive:after {
+        content: "";
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+
+    .nav-links:hover .link::before {
+        display: none;
+    }
+
+    .nav-links:hover .link::after {
+        display: none;
+    }
+    .nav-links:hover .link {
+        text-decoration: underline;
+    }
+
+    .item img {
+        padding: 10px 5px;
+    }
+
+    .pop-mobiles-2 {
+        width: 90%;
+        margin-top: 100px;
+    }
+
+    .product-container {
+        width: 90%;
+    }
+
+    .product-over button {
+        font-size: 0;
+    }
+
+    .product .product-image {
+        height: 200px;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .account-btn {
+        font-size: 1rem;
+    }
+
+    .product-summary {
+        height: 30%;
+    }
+
+    .products {
+        width: 80%;
+        margin: auto;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-summary > p {
+        display: none;
+    }
+
+    .pop-mobiles-1 > figure {
+        width: 70%;
+    }
+
+    .pop-mobiles-1 > div {
+        left: 10%;
+        top: 40%;
+        width: 70%;
+        height: auto;
+    }
+
+    footer .footer-second {
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+
+    .footer-second h3 {
+        margin-bottom: 15px;
+    }
+
+    .footer-second > div {
+        margin-top: 30px;
+        text-align: left;
+        width: 100%;
+    }
+    .footer-second a {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .navbar {
+        width: 100vw;
+        height: 430px;
+    }
+
+    .producstOnCart {
+        font-size: 0.8rem;
+    }
+
+    .pop-mobiles-1 {
+        width: 100%;
+        font-size: 0.9rem;
+        height: 300px;
+        margin: 0;
+    }
+
+    .pop-mobiles-1 .btn {
+        opacity: 0.9;
+    }
+
+    .pop-mobiles-1 > div {
+        top: 0%;
+    }
+
+    .pop-mobiles-1 h2 {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+    }
+    .pop-mobiles-2 {
+        width: 55%;
+        margin-left: 1%;
+    }
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .pop-mobiles-2 .products {
+        grid-template-columns: 1fr;
+    }
+
+    .product-summary .price {
+        display: inline;
+        left: 0;
+    }
+
+    .account-text {
+        display: none;
+    }
+
+    .fas {
+        font-size: 1rem;
+    }
+    .pop-mobiles {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+
+.productName {
+    font-weight: bold;
+    color: black;
+}
+header {
+    border-radius: 2px;
+}
+
+.cc {
+    width: 190vmin;
+    position:relative;
+    height: 80vmin;
+    transform: translate(-50%, -15%);
+    top: 80%;
+    
+    left: 50%;
+    overflow: hidden;
+    
+    border-radius: 40px;
+background: #00FFFF;
+box-shadow:  35px 35px 71px #00FFFF;
+}
+
+.wrapper {
+    top: 60%;
+    bottom: 20%;
+width: 100%;
+display: flex;
+animation: slide 16s infinite;
+}
+@keyframes slide {
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55%{
+        transform: translateX(-200%);
+    }
+    75%{
+        transform: translateX(-200%);
+    }
+    80%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(-300%);
+    }
+}
+.wrapper  img {
+    width: 100%;
+    border-color: black;
+}
+
+u {
+    font-weight: bold;
+}
+  h7 {
+    text-decoration: line-through;
+    font-size: 20px;
+}
+
+.exc {
+    position: absolute;
+    top: 45%;
+    left: .5%;
+}
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #6cabff;
+  color: black;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  border-radius: 20px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.scroller {
+    display: flex;
+    flex-direction: row;
+     cursor: pointer;
+  }
+  .box {
+    display: inline-block; /* add this */
+    width: 250px;
+    height: 300px;
+    -webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin: 10px;
+  }
+
+  .box:hover {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+    background-color: #00FFFF;
+  }
+  .box img {
+    width: 60%;
+    height: 160px;
+    
+    margin: 28px;
+  }
+  .box p {
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  h8 {
+    font-weight: bold;
+    font-size: 40px;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+  .hide {
+    visibility: hidden;
+  }
+  header #branding img {
+    display: inline-block;
+ width: 50px;
+  }
+  
+  header #branding h1{
+    margin: auto;
+    font-size: 30px;
+    
+    
+  }
+  .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@media only screen and (max-width: 600px) {
+  /* styles for smaller screens */
+  #menuButton {
+    display: block;
+    color: black;
+  }
+  nav ul {
+    display: none;
+  }
+  
+  nav #myInput{
+    display: block;
+    width: 50%;
+    margin: auto;
+  }
+  nav ul li {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin: auto;
+    text-decoration: none;
+    color: white;
+  }
+  #fronttitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  /* styles for smaller screens */
+  .scroller {
+    width: 70%;
+    margin: auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .box {
+    height: auto;
+    width: auto;
+    text-align: center;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  /* styles for smaller screens */
+  .cc {
+    
+   
+    width: 100%;
+    height: 100%;
+  }
+  
+}
+#navbar-list {
+  display: none; /* hidden by default */
+}
+@media only screen and (max-width: 600px) {
+  #navbar-list {
+    display: none; /* hidden by default on small screens */
+  }
+}
+@media only screen and (max-width: 600px) {
+
+#myInput {
+    display: block;
+}
+
+}
+footer .links {
+    padding-top: auto;
+    display: flex;
+    flex-direction: row;
+    width: 2%;
+   
+    justify-content: center;
+    
+}
+.link {
+    margin: 10px;
+    cursor: pointer;
+}
+.link:hover {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+    background-color: transparent;
+}
+h2{
+    text-align: center;
+    font-weight: bold;
+}
+#noItems {
+    display: none;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+ /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto;
+    overflow-y: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+    font-size: 30px;
+    color: red;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+/* Position the modal content */
+.modal-content {
+  position: absolute;
+  top: 50%;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    display: block;
+  
+   
+
+  max-height: 100vh; /* set a maximum height that fits the screen */
+  overflow: auto; /* add a scrollbar when the content exceeds the height */
+}
+
+
+#editProd {
+    
+    background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 1px 10px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px black;
+    
+}
+
+#delProd {
+    display: inline-block;
+    margin: auto;
+    cursor: pointer;
+    margin-right: 35px;
+    color: white;
+    font-size: 15px;
+    background-color: black;
+    box-shadow: 3px 4px 0px 0px #C92603;
+    background: red;
+    background-color: #FE0101;
+    border-radius: 5px;
+    border: 1px solid #337bc4;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: .80rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #528ecc;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+#delProd:hover {
+  -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+    background:linear-gradient(to bottom, #C92603 100%);
+	
+    background-color: #C92603;
+}
+#editProd:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        #editProd:active {
+          position:relative;
+	top:1px;
+        }
+#delProd:active{
+    position:relative;
+	top:1px;
+}
+.modal-content form {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+select {
+   width: 49%;
+    text-align: center !important;
+  cursor: pointer;
+  margin: 0 auto;
+    margin-bottom: 20px !important;
+  
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: clamp(15px, 1.5vw, 60px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  text-align: center;
+}
+select option {
+  cursor: pointer;
+}
+
+input {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px !important;
+  
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: clamp(15px, 1.5vw, 60px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  text-align: center;
+}
+textarea, select {
+  outline: none;
+}
+
+textarea[readonly] {
+    background-color:#e9ecef !important;
+}
+input[readonly]
+ {
+    background-color:#e9ecef !important;
+}
+textarea:not([readonly]) {
+  background-color: white !important; /* set a different background color for non-readonly inputs */
+}
+input:not([readonly])
+ {
+  background-color: white !important; /* set a different background color for non-readonly inputs */
+}
+#editStatement {
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+    margin-top: 5px;
+    font-weight: bold;
+}
+label {
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+  
+
+
+ 
+    
+}
+textarea {
+    min-height: 200px;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+    overflow: scroll;
+    border: none !important;
+    padding: 12px;
+    font-size: clamp(15px, 1.5vw, 60px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; 
+}
+
+#submit {
+    display: none;
+    box-shadow: 3px 4px 0px 0px #1564ad;
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    background-color: #79bbff;
+    border-radius: 5px;
+    border: 1px solid #337bc4;
+  
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+  margin-top: 40px;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 50px;
+    width: 40%;
+    text-decoration: none;
+    padding-top: 10px;
+    text-shadow: 0px 1px 0px #528ecc;
+}
+#submit:hover {
+    background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+.cancel-button {
+    background-color: #FE0101 !important;
+  background: red !important;
+ border: none !important;
+ box-shadow: 3px 4px 0px 0px #C92603 !important; 
+
+
+}
+.cancel-button:hover {
+  -webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+	-webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+    background:linear-gradient(to bottom, #C92603 100%) !important;
+	
+    background-color: #C92603 !important;
+}
+#addNewP {
+    display: inline-block !important;
+    margin-left: auto;
+    margin-right: 100px;
+    float: right;
+ 
+    background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 5px 10px;
+    text-shadow: 0px 1px 0px black;
+}
+#addNewP:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        #addNewP:active {
+          position:relative;
+	top:1px;
+        }
+    
+/* Style the search button */
+.search-btn {
+
+background-color: #49989e;
+   border-radius: 5px;
+border: none;
+   display:inline-block;
+   cursor:pointer;
+   padding:1px 10px;
+   font-family:sans-serif !important;
+   transition: background-color 0.3s ease, border-color 0.3s ease;
+   color: white !important;
+   text-decoration:none;
+   text-shadow:0px 1px 0px black;
+ margin-left: 20px;
+}
+.search-btn:hover {
+  background-color: #00FFFF;
+  border-color: #00FFFF;
+  color: black  !important;
+}
+/* Style the search container */
+.search-container {
+ display: inline-block;
+ position: relative;
+ 
+}
+
+/* Hide the search popup by default */
+.search-popup {
+ display: none;
+ position: absolute;
+ z-index: 1;
+ right: 90px;
+ top: 50px;
+ background-color: #f1f1f1;
+
+ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Style the search form */
+.search-form {
+ margin: 0;
+ padding: 8px 8px;
+ border: none;
+
+ display: flex;
+}
+
+/* Style the search input */
+.search-form input[type=text] {
+ flex: 1;
+ border: none;
+ padding: 4px;
+ margin-right: 4px;
+ border-radius: 20px;
+}
+
+/* Style the search button */
+.search-form button[type=submit] {
+ background-color: #49989e;
+ color: white;
+ border: none;
+ cursor: pointer;
+ padding: 0px;
+ padding-left: 12px !important;
+ padding-right: 10px !important;
+
+}
+
+/* Show the search popup when the search button is clicked */
+.search-container .search-btn:focus + .search-popup,
+.search-container .search-btn:hover + .search-popup {
+    
+ display: block;
+}
+
+/* Hide the search popup when the user clicks outside of it */
+.search-container .search-popup {
+ position: absolute;
+ right: 0;
+ top: 40px;
+ z-index: 1;
+ margin-right: 100px !important;
+ border-radius: 20px;
+}
+form {
+    width: 900px !important;
+  
+}
+/* Style the search popup links */
+.search-popup a {
+ color: black;
+ padding: 12px;
+ text-decoration: none;
+ display: block;
+}
+
+/* Change the background color of the search popup links on hover */
+.search-popup a:hover {
+ background-color: #ddd;
+}
+.fa-search {
+   font-size: 17px;
+}
+#submitBtn .fa-search {
+   font-size: 15px !important;
+  margin: auto;
+  
+}
+#submitBtn {
+   border-radius: 20px;
+}
+.search-form ::placeholder {
+   font-family: sans-serif;
+}
+
+#UL1 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+#UL1 a {
+    text-transform: none !important;
+}
+#UL1 li {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  float: none !important;
+  border-radius: 20px;
+ 
+}
+
+
+
+#UL1 li:hover {
+  background-color: #f5f5f5;
+}
+.dropdown-content {
+  max-height: 200px; /* maximum height for the dropdown */
+  overflow-y: auto; /* enable vertical scrolling */
+  min-height: 50px; /* minimum height for the dropdown */
+}
+.dropdown-content a {
+  display: block; /* make each link a block element */
+  padding: 15px; /* add some padding around the links */
+}
+.gret p {
+    font-size: 23px !important;
+    text-align: left;
+    margin-left: 10px;
+  
+}
+.hide {
+    display: none;
+}
+.cartItemCount { 
+    position: absolute;
+    top:0;
+    background-color: #49989e;
+padding-left: 4px;
+padding-right: 3px;
+    border-radius: 20px;
+    color: white;
+  
+}
+#back {
+    background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:sans-serif !important;
+	font-size:17px;
+	font-weight:bold;
+	padding:1px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px black;
+margin-right: auto;
+margin-left: 20px;
+}
+#back:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        #back:active {
+          position:relative;
+	top:1px;
+        }
+        .product-under:hover {
+    transform: scale(1.1);
+    background-color: #00FFFF;
+
+}
+#adminicon {
+    margin-right: auto;
+    margin-left: auto;
+
+    width: 80px;
+    height: auto !important;
+    cursor: pointer;
+}
+.prodInfos {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+   gap: 10px;
+}
+.prodInfos label {
+  margin-bottom: 5px;
+}
+
+.property-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.property-container > p {
+  width: 100%; /* Set the width to 100% to occupy the full width */
+  margin-bottom: 0px !important;
+  font-weight: bold;
+}
+
+.property-container > input[type="text"] {
+  flex-grow: 1; /* Allow the input elements to grow and fill the available space */
+  margin-left: 30px;
+}
+
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input[type="text"] {
+  padding-right: 20px; /* Add space for the remove icon */
+}
+
+.remove-icon {
+  position: absolute;
+  bottom: 45%;
+  left: 3px;
+  right: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px !important;
+}
+.container-remove-icon {
+ display: block;
+}
+
+ .property-container .container-remove-icon {
+margin-bottom: 20px;
+cursor: pointer;
+}
+
+
+        </style>
+         <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <!--Navbar-->
+      
+
+       <br>
+       <br>
+       <br>
+       <a href="accifLoggedIn.html" id="back"><i class="fas fa-arrow-circle-left"></i> Account</a>
+<h2 style="font-weight: bold;"><img id="adminicon" src="images/logo.png"> My Products</h2>
+<button id="addNewP"><i class="fas fa-plus-circle"></i> Add New Product</button>
+<div class="product-container">
+<div class="products">
+   
+</div>
+</div>
+    <nav>
+        <!--Navbar has two part the top one and the bottom one-->
+        <!--Here is top one and in this part I put logo, my account part, and the shopping cart-->
+      
+           
+              
+            
+        </div>
+        <div class="producstOnCart hide">
+            <div class="overlay"></div>
+            <div class="top">
+                <button id="closeButton">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+                <h3>Cart</h3>
+            </div>
+            <ul id="buyItems">
+                <h4 class="empty"></h4>
+                
+                <!-- <li class="buyItem">
+                    <img src="Images/producs-images/Mobiles/galaxynote10.png">
+                    <div>
+                        <h5>Products Name</h5>
+                        <h6>$199</h6>
+                        <div>
+                            <button>-</button>
+                            <span class="countOfProduct">1</span>
+                            <button>+</button>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+            <p id="pri">Total Price: <h6 id="sum-prices"></h6></p>
+            <button class="btn checkout hidden" id="checkout">Check out</button>
+
+        </div>
+    </nav>
+<div id="snackbar"><i class="fas fa-shopping-cart shoppingCartButton fa-lg"> Added to Cart</i></div>
+    <h5 id="noItems" style="text-align: center; margin-top: 150px;">You have no added products yet</h5>
+  
+
+<script type="module">
+  
+  // Import the functions you need from the SDKs you need
+ // Import the functions you need from the SDKs you need
+ import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL}
+  from"https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js"
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword,  signOut, updateProfile, sendSignInLinkToEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+  import { getDatabase, set, ref, update, get, onValue, query, equalTo, orderByChild, remove, push } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCtisSJKA9OIYxI3B9tbtWEGg0PKiI0Vks",
+    authDomain: "loginpage-fa237.firebaseapp.com",
+    databaseURL: "https://loginpage-fa237-default-rtdb.firebaseio.com",
+    projectId: "loginpage-fa237",
+    storageBucket: "loginpage-fa237.appspot.com",
+    messagingSenderId: "709059025327",
+    appId: "1:709059025327:web:a45e1c21fc088473fd375a",
+    measurementId: "G-3664V8SZKB"
+  };
+
+  // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  const database = getDatabase();
+  
+  AOS.init({
+  duration: 1500,
+})
+
+// const accounts = document.getElementById('acc');
+
+// accounts.addEventListener('click', function(e) {
+//    onAuthStateChanged(auth, (user) => {
+// e.preventDefault();
+// const sellerInfo = ref(database, 'Seller/' + 'Pending_Request/' + user.uid  );
+
+// onValue(sellerInfo, (snapshot) => {
+//  const data = snapshot.val();
+//  console.log(data)
+//  if(data === null) {
+//    window.location = 'accifLoggedIn.html'
+//  } else {
+//    window.location = 'SellerAccount.html'
+//  }
+
+//    })
+//    })
+// })
+const addNewP = document.getElementById('addNewP');
+addNewP.addEventListener('click', function(e) {
+    onAuthStateChanged(auth, (user) => {
+    e.preventDefault();
+    const sellerRef = ref(database, `Seller/${user.uid}`);
+    onValue(sellerRef, (snapshot) => {
+
+        const sellerData = snapshot.val();
+
+        if(sellerData.Status === "Approved") {
+            window.location = "seller.html"
+        } else if(sellerData.Status = "Pending") {
+            swal({
+title: "Pending Request",
+text: 'You cannot add products because your account is still pending approval. If you have any questions, please do not hesitate to contact us.',
+type: "warning",
+showConfirmButton: true,
+showCancelButton: true,
+cancelButtonText: "Contact"
+},function (isConfirm) {
+  // At least one input is empty, return false or do something else
+ if(!isConfirm) {
+    window.location = "contact.html"
+ }
+
+})
+        }
+    })
+    
+    })
+})
+const noItemsStatement = document.getElementById('noItems');
+onAuthStateChanged(auth, (user) => {
+    const catRef = ref(database, 'Categories/');
+
+   
+
+
+
+
+onValue(catRef, (snapshot) => {
+    
+
+  
+    snapshot.forEach((childSnapshot) => {
+        const categories = childSnapshot.val();
+        const catId = childSnapshot.key
+        const items = categories.Items;
+        for (const itemId in items) {
+      const item = items[itemId];
+  
+    if(item.Seller_ID === user.uid) {
+        const prodFirstSpec = item.Product_Specifications;
+console.log(prodFirstSpec)
+
+let minPrice = Infinity;
+let maxPrice = -Infinity;
+
+for (const key in prodFirstSpec) {
+  const options = prodFirstSpec[key].Options;
+
+  
+ // displays the default option that has a price
+
+ for (const option of options) {
+  const price = parseInt(option.price);
+  
+  if (!isNaN(price)) {
+    if (price < minPrice) {
+      minPrice = price;
+    }
+    if (price > maxPrice) {
+      maxPrice = price;
+    }
+  }
+}
+}
+       var output = '';
+     
+       output += `
+        
+       
+       
+       <div class="product" data-aos="fade-up">
+                            <div class="product-under" data-uid = '${itemId}'>
+                                <figure class="product-image">
+                                    <img
+                                        src="${item.Main_image}"
+                                      
+                                    />
+                                   
+                                </figure>
+                                <div class="product-summary">
+                                    <h4 class="productName">${item.Product_Name}</h4>
+                                   
+
+                                    <div class="rating" data-product-id='${itemId}'></div>
+                                   
+                                    <h6 class="price">
+                                        ₱<span class="priceValue">${minPrice !== Infinity && maxPrice !== -Infinity ? minPrice.toLocaleString() + " - " + '₱' +   maxPrice.toLocaleString() : item.Price.toLocaleString() }</span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div id="changeInf-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn">&times;</button>
+    <h2 id='editStatement'>Product Info</h2>
+    <button style="margin-right: auto;" id="delProd">Delete Product</button>
+    <button style="float:right;" id="editProd">Edit Product Info</button>
+    <form id="address-form">
+        <input type="text" id="catId" style="display:none";  readonly>
+        <input type="text" id="itemId" style="display:none";  readonly>
+        <div class="prodInfos">
+        <label for="pName" style='margin-right:auto'>Product Name:</label>
+<label for="pPrice" style='margin-right:184px;'>Product Price: ₱</label>
+</div>
+
+        <div class="prodInfos">
+  
+  <input type="text" id="pName" readonly>
+  
+  <input type="text" id="pPrice" readonly>
+</div>
+<div class="prodInfos">
+      <label for="pStock" style='margin-right:auto'>Stock:</label>
+      <label for="pCategory" style='margin-right:230px;'>Category:</label>
+    </div>
+    <div class="prodInfos">
+      <input type="text" id="pStock"  readonly>
+      <input type="text" id="pCategory" readonly>
+    </div>
+    
+      <label for="pDesc" style='margin-top: 13px;'>Product Description:</label>
+     
+      <textarea  id="pDesc"  readonly></textarea>
+      
+      <button id='submit'>Save Changes</button>
+    </form>
+  </div>
+  
+</div>
+          
+        `;
+        document.querySelector('.products').innerHTML += output
+      
+       
+
+// const ratingDivs = document.querySelectorAll(`[data-product-id] .rating`);
+//   ratingDivs.forEach((div) => {
+ 
+//     console.log(ratingDivs)
+    
+//   });
+// let ratingDivs = document.querySelectorAll(`[data-product-id] .rating`);
+// console.log(ratingDivs)
+// ratingDivs.forEach((ratingDiv) => {
+ 
+// if(!ratingDiv.innerHTML || ratingDiv.innerHTML === '') {
+//   ratingDiv.innerHTML = 'No ratings yet';
+//   console.log('hays')
+// }
+  
+// });
+
+        const productNames = document.querySelectorAll('.productName');
+
+// Set the maximum number of characters
+const maxLength = 15;
+
+// Loop through all product name elements
+productNames.forEach(productName => {
+  // Get the product name text
+  const productNameText = productName.textContent;
+
+  // Check if the product name exceeds the maximum length
+  if (productNameText.length > maxLength) {
+    // Truncate the product name and add "..." at the end
+    const truncatedName = productNameText.substring(0, maxLength) + "...";
+
+    // Update the product name element with the truncated name
+    productName.textContent = truncatedName;
+  }
+});
+        } else {
+        noItemsStatement.style.display ="block"
+        }
+    }
+   
+
+    
+    })
+    let selName ='';
+    let ops = [];
+    function getItemById(itemId) {
+  onValue(catRef, (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      const categories = childSnapshot.val();
+      const categoryId = childSnapshot.key;
+      const items = categories.Items;
+
+      for (const itemIds in items) {
+        const item = items[itemIds];
+        const prodFirstSpec = item.Product_Specifications;
+console.log(prodFirstSpec)
+
+let minPrice = Infinity;
+let maxPrice = -Infinity;
+
+for (const key in prodFirstSpec) {
+  const options = prodFirstSpec[key].Options;
+
+  
+ // displays the default option that has a price
+
+ for (const option of options) {
+  const price = parseInt(option.price);
+  
+  if (!isNaN(price)) {
+    if (price < minPrice) {
+      minPrice = price;
+    }
+    if (price > maxPrice) {
+      maxPrice = price;
+    }
+  }
+}
+}
+
+        if (itemIds === itemId) {
+          document.getElementById('catId').value = categoryId;
+          document.getElementById('itemId').value = itemIds;
+          document.getElementById('pName').value = item.Product_Name;
+          document.getElementById('pPrice').value = `${minPrice !== Infinity && maxPrice !== -Infinity ? minPrice.toLocaleString() + " - " + '₱' +   maxPrice.toLocaleString() : item.Price.toLocaleString() }`
+          document.getElementById('pStock').value = item.Stock;
+          document.getElementById('pCategory').value = categories.Category_Name;
+          document.getElementById('pDesc').value = item.Description;
+            
+          // Assuming `item.Product_Specifications` contains the object you mentioned
+
+          
+
+          // Iterate over the properties of `item.Product_Specifications`
+        
+        }
+      }
+    });
+  });
+}
+
+
+const modal = document.getElementById('changeInf-modal');
+let changeInfo = document.querySelectorAll('.product-under');
+
+for (const button of changeInfo) {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    modal.style.display = 'block';
+    const itemId = this.getAttribute('data-uid');
+
+    getItemById(itemId);
+  });
+}
+
+const closeBtn = document.querySelector('.close-btn');
+closeBtn.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+const deleteProd = document.getElementById('delProd');
+deleteProd.addEventListener('click', function(e){
+    const catIdtoDelete =  document.getElementById(`catId`).value 
+           const itemIdtoDelete = document.getElementById(`itemId`).value 
+e.preventDefault();
+swal({
+title: "Are you sure?",
+text: "This action cannot be undone. If you delete this product, all users who have added it to their cart will lose their saved selection.",
+type: "warning",
+showCancelButton: true,
+showConfirmButton: true,
+
+}, function () {
+    
+    remove(ref(database, `Categories/${catIdtoDelete}/Items/${itemIdtoDelete}`))
+
+    .then(() => {
+location.reload();
+    })
+})
+
+})
+
+
+
+// // Call the function to add remove icons
+// document.getElementById('test').addEventListener('click', function(e) {
+//     e.preventDefault();
+
+   
+//     // Log the variables
+// console.log('Remove Icon:', removeIconVariable);
+// console.log('Container Remove Icon:', containerRemoveIconVariable);
+// console.log('Add Icon:', addIconVariable);
+// console.log('op array:', optionsArray);
+// })
+
+
+
+
+
+// Call the addRemoveIcons function when needed, e.g., when the edit button is clicked
+
+
+const editProd = document.getElementById('editProd');
+const saveButton = document.getElementById('submit');
+
+editProd.addEventListener('click', function(e) {
+    e.preventDefault();
+   
+    let oldpName =  document.getElementById(`pName`).value
+let oldpPrice =  document.getElementById(`pPrice`).value
+let oldpStock =  document.getElementById(`pStock`).value
+let oldpDesc =  document.getElementById(`pDesc`).value
+const  oldPcatName = document.getElementById('pCategory').value;
+const itId = document.getElementById('itemId').value;
+console.log(selName)
+
+    // Get the categories
+    const cat = ref(database, 'Categories/');
+
+    // Create the select element
+    const selectElement = document.createElement('select');
+
+    // Add an empty option to the select element
+    const emptyOption = document.createElement('option');
+    emptyOption.text =   oldPcatName;
+    emptyOption.selected = true;
+    emptyOption.disabled = true;
+    selectElement.add(emptyOption);
+
+    // Add all category options to the select element
+    onValue(cat, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const categories = childSnapshot.val();
+        
+            const option = document.createElement('option');
+            option.text = categories.Category_Name;
+            selectElement.add(option);
+        });
+    });
+   
+
+    // Replace the pCategory element with the select element
+    let pCategory = document.getElementById('pCategory');
+    pCategory.removeAttribute("readonly");
+    pCategory.parentNode.replaceChild(selectElement, pCategory);
+
+    // Remove the readonly attribute from the other input elements
+    document.getElementById(`pName`).removeAttribute("readonly");
+    document.getElementById(`pPrice`).removeAttribute("readonly");
+    document.getElementById(`pStock`).removeAttribute("readonly");
+    document.getElementById(`pDesc`).removeAttribute("readonly");
+
+    // Display the save button
+    saveButton.style.display = "block";
+
+    // Change the edit button text content to "Cancel"
+    editProd.textContent = "Cancel";
+if(editProd.textContent === "Cancel") {
+    editProd.classList.add('cancel-button');
+
+    editProd.addEventListener('click', function() {
+        swal({
+title: "Are you sure?",
+text: "All changes will not be saved",
+type: "warning",
+showCancelButton: true,
+showConfirmButton: true,
+
+}, function () {
+location.reload();
+})
+    })
+}
+
+       
+
+
+saveButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    let itemId =  document.getElementById(`itemId`).value
+    let pName =  document.getElementById(`pName`).value
+let pPrice =  document.getElementById(`pPrice`).value
+let pStock =  document.getElementById(`pStock`).value
+let pDesc =  document.getElementById(`pDesc`).value
+let oldCategoryId = document.getElementById(`catId`).value
+
+console.log(ops)
+// let mainImg = document.getElementById(`mainImg_${itemId}`).src;
+ 
+
+    let selectedCategoryName = selectElement.value;
+    if (pName.trim() === '' || pPrice.trim() === '' || pStock.trim() === '' || pDesc.trim() === '') {
+  swal({
+    title: 'Oops!',
+    text: " Input fields can't be empty. Please Try again.",
+    type: 'error',
+  });
+  return false;
+}
+
+else if(pName === oldpName && pPrice === oldpPrice && pStock === oldpStock && pDesc === oldpDesc && selectedCategoryName === oldPcatName) {
+    swal({
+    title: 'Oops!',
+    text: "No changes were made. Please make atleast one change(s) to save changes.",
+    type: 'error',
+  });
+  return false;
+}
+
+    // Check if the selected category is different from the current category
+    else if (selectedCategoryName !== oldPcatName) {
+        // Remove the item from the old category
+        remove(ref(database, `Categories/${oldCategoryId}/Items/${itemId}`))
+        .then(() => {
+            // Find the ID of the selected category
+            const categoryQuery = query(cat, orderByChild('Category_Name'), equalTo(selectedCategoryName));
+            onValue(categoryQuery, (snapshot) => {
+                snapshot.forEach((childSnapshot) => {
+                    const categoryUid = childSnapshot.key;
+                    const categoryIdInput = document.getElementById('catId');
+                    categoryIdInput.value = categoryUid;
+
+                    // Add the item to the new category with the correct category ID
+                
+          
+            update(ref(database, `Categories/${categoryIdInput.value}/Items/${itemId}`), {
+                Description: pDesc,
+                Product_Name: pName,
+                Stock: pStock,
+                Price:pPrice,
+                Seller_ID: user.uid,
+            
+            });
+        
+
+
+
+        })
+            });
+           
+        });
+    
+        // Update the item in the current category
+        
+    } else {
+        swal({
+title: "Are you sure?",
+text: "All changes will be saved",
+type: "warning",
+showCancelButton: true,
+showConfirmButton: true,
+
+}, function () {
+    // Read all user info with Cart object
+
+
+
+    update(ref(database, `Categories/${oldCategoryId}/Items/${itemId}`), {
+                Description: pDesc,
+                Product_Name: pName,
+                Stock: pStock,
+                Price: pPrice,
+                Seller_ID: user.uid,
+                
+                
+        })
+      
+        const usersRef = ref(database, `users/User Info/`);
+onValue(usersRef, (refr) => {
+  const userData = refr.val();
+  Object.keys(userData).forEach((userId) => {
+    const user = userData[userId];
+    if (user && user.Cart && user.Cart.productsInCart && Array.isArray(user.Cart.productsInCart)) {
+      const cart = user.Cart.productsInCart;
+      const cartItemIndex = cart.findIndex(item => item.id === itId);
+      if (cartItemIndex !== -1) {
+        const cartItem = cart[cartItemIndex];
+        cartItem.name = pName;
+        cartItem.price = parseInt(pPrice);
+        console.log(cartItem);
+        update(ref(database, `users/User Info/${userId}/Cart/productsInCart/${cartItemIndex}`), cartItem);
+      }
+      location.reload()
+    }
+  });
+});
+
+
+
+})
+
+
+
+    }
+});
+
+});
+
+});
+
+
+
+})
+
+</script>
+
+</body>
+
+</html>

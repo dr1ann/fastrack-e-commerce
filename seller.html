@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FasTrack</title>
+  <script src="sadsa.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js"></script>
+  <link rel="icon" type="image/png" href="images/logo.png">
+        <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <title>Seller Panel</title>
+
+<style>
+    .imagesDivStyle {
+        width: 600px;
+        border: 1px gray solid;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    select 
+    body {
+          font-family: Arial, Helvetica, sans-serif;
+        
+        }
+    
+    
+        .pointers{
+            border: 1 rgb(233, 68, 68);
+        }
+        #pdlab{
+           
+            vertical-align: top;
+        }
+
+     #selimgsbtn{
+     text-align: right;
+     margin-left: 550px;
+    }
+    #controldiv{
+       margin: auto;
+       display: inline-block;
+    }
+    #loadlab{
+        width: 200px;
+    }
+    .imgs{
+        height: 120px;
+        width: 120px;
+       margin: 10px;
+        border: 1px black dashed;
+    }
+    body {
+        background-color: white;
+    }
+    .my-font-size {
+  font-size: 12px;
+}
+.sweet-alert h2 {
+    font-size: 19px;
+}
+
+
+#selimgsbtn {
+          
+                
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:sans-serif;
+	font-size:17px;
+	font-weight:bold;
+	padding:1px 10px;
+	text-decoration:none;
+	
+
+        }
+        #selimgsbtn:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        #selimgsbtn:active {
+          position:relative;
+	top:1px;
+        }
+        #addprodbtn {
+        
+               
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+	display:block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:sans-serif;
+	font-size:17px;
+	font-weight:bold;
+	padding:8px 35px;
+	text-decoration:none;
+
+    display: block;
+    margin-bottom: 30px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+        }
+        #addprodbtn:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        #addprodbtn:active {
+          position:relative;
+	top:1px;
+        }
+        #gg{
+       margin-right: auto;
+       margin-top: 15px;
+       margin-left: 15px;
+              
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:sans-serif;
+  font-size:17px;
+  font-weight:bold;
+  padding:1px 10px;
+  text-decoration:none;
+
+  
+      }
+      #gg:hover {
+        background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color:#378de5;
+      }
+      #gg:active {
+        position:relative;
+  top:1px;
+      }
+      .fa-arrow-circle-left {
+        padding-right: 5px;
+      }
+      .section {
+        width: 70%;
+   
+
+margin-left: auto;
+margin-right: auto;
+        display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #d1e4e4;
+;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
+      .form-item {
+  position: relative;
+  display: block;
+
+  width: 40% !important;
+  text-align: center;
+}
+#AddMoreOp {
+         
+  background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    
+    text-decoration: none;
+   
+}
+#AddMoreOp:hover {
+        background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color:#378de5;
+      }
+      #AddMoreOp:active {
+        position:relative;
+  top:1px;
+      }
+      #AddMoreOp1 {
+        
+        background: #49989e;
+    background-color: #49989e;
+    border-radius: 5px;
+    border: 1px solid #49989e;
+	text-shadow:0px 1px 0px black;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 15px;
+    text-decoration: none;
+   
+}
+#AddMoreOp1:hover {
+        background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+  background-color:#378de5;
+      }
+      #AddMoreOp1:active {
+        position:relative;
+  top:1px;
+      }
+label, input, textarea, select, h1 {
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+}
+select {
+    width: 107% !important;
+}
+label {
+  position: absolute;
+  top: 10px;
+  left: 2%;
+  color: #999;
+  font-size: clamp(14px, 1.5vw, 18px);
+  pointer-events: none;
+  user-select: none;
+}
+
+input, textarea, select {
+  width: 100%;
+  margin:  0 auto;
+margin-bottom: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  padding: 12px;
+  font-size: clamp(15px, 1.5vw, 60px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+  rgba(28, 154, 147, 0.8) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+
+}
+.sweet-alert button.cancel {
+  background-color: red !important;
+}
+.sweet-alert button.confirm {
+  background-color: #378de5 !important;
+}
+.sweet-alert p {
+  color: black !important;
+}
+select
+ {
+  cursor: pointer !important;
+}
+
+
+input:focus+label, 
+input:valid+label, 
+select:focus+label, 
+select:valid+label, 
+textarea:focus+label, 
+textarea:valid+label {
+  font-size: clamp(13px, 1.3vw, 16px);
+  color: #777;
+  top: -20px;
+  transition: all .225s ease;
+}
+      textarea {
+        min-height: 200px;
+        
+        overflow: auto;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+      }
+      h1 {
+        font-size: 35px;
+        text-align: center;
+        margin-right: 10px;
+      }
+      .imgContainer {
+    position: relative;
+display: inline-block;
+  }
+  
+  .removeBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    border-radius: 30px;
+    color: red;
+    cursor: pointer;
+  }
+  .removeBtn:hover {
+    background-color: #C92603;
+  }
+  #adminicon {
+    margin-right: auto;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 80px;
+    cursor: pointer;
+}
+#note {
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px !important;
+
+font-size: 18px;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+}
+.option-wrapper {
+  position: relative;
+ 
+}
+
+
+#note {
+  color:  red;
+}
+.option-wrapper .remove-option {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+padding-left: 6px;
+padding-right: 6px;
+  color: white;
+  font-size: 15px;
+margin-top: 10px;
+       
+  background: red;
+    background-color:red;
+    border-radius: 5px;
+    border: 1px solid red;
+	text-shadow:0px 1px 0px black;
+	
+	cursor:pointer;
+	color:#ffffff;
+	font-family:sans-serif;
+
+	font-weight:bold;
+
+	text-decoration:none;
+
+}
+input::placeholder {
+  font-size: 16px;
+}
+.option-div {
+  margin-top: 20px;
+}
+.hideNote {
+
+
+  color: red;
+      font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+}
+</style>
+
+</head>
+    <body>
+        <div class="section">
+           
+        <a href="accifLoggedIn.html" id="gg"><i class="fas fa-arrow-circle-left"></i><span>Account</span></a>
+     
+     <h1><img id="adminicon" src="images/logo.png">Add New Product</h1>
+            <br>
+            <div class="form-item">
+       <input type="text" autocomplete="off" id="name"> <label>Product Name</label>  <br><br>
+    </div>
+  
+        <div class="form-item">
+       <input type="text" autocomplete="off" id="stock">  <label>Stock (Quantity)</label><br><br>
+    </div>
+    <div class="form-item">
+        
+          
+        <select id="category"><br><br>
+       
+       
+        </select><label>Category</label><br><br>
+    </div>
+    <div class="form-item">
+        <textarea id="desc"></textarea> <label id="pdlab">Product Description</label><br><br> 
+    </div>
+    <div class="form-item">
+      <input type="text" name="" value="" placeholder="Selection Name (Ex. Size)" id="selName">
+      <label id="pdlab">Product Specifications (Optional)</label>
+      <!-- <p  class="hideNote">Note:  Disregard if an option doesn't have a price</p> -->
+      <div id="options">
+       
+        <button style="float:right" id="AddMoreOp">Add option</button>
+      </div>
+      
+    </div>
+    <br>
+    <br>
+    <div class="form-item">
+      <input type="text" name="" value="" placeholder="Selection Name  (Ex. Size)" id="selName1">
+      <label id="pdlab">Another Selection (Optional)</label>
+      <div id="options1">
+       
+        <button style="float:right" id="AddMoreOp1">Add option</button>
+      </div>
+      
+    </div>
+    <br>
+    <br>
+    <p id="note">No Product Specifications/Selections or no prices in the options? <br> Please input the price of your product</p>
+    <div class="form-item">
+      <input type="number" autocomplete="off" id="price">  <label>Product Price</label><br><br>
+    
+    </div>
+        <div id="imagesDiv"><p id="note">Note: Maximum of 10 images allowed</p></div>
+        <button id="selimgsbtn">Select Images</button>
+        <div id="controldiv">
+      <label></label>  <label id="load"></label>
+    
+      <br>
+        <button id="addprodbtn">Add Product</button>
+   
+        </div>
+    </div>
+<script type="module">
+const optionsDiv = document.getElementById("options");
+const optionsArray = [];
+
+document.getElementById("AddMoreOp").addEventListener("click", function() {
+  // Create new option wrapper div
+  const newOptionWrapper = document.createElement("div");
+  newOptionWrapper.classList.add("option-wrapper");
+
+  // Create new input elements
+  const newInput = document.createElement("input");
+  newInput.type = "text";
+  newInput.name = "option";
+  newInput.placeholder = "Option Name  (Ex. Small)";
+  
+  const newPriceInput = document.createElement("input");
+  newPriceInput.type = "text";
+  newPriceInput.name = "price";
+  newPriceInput.id = "priceInput"
+  newPriceInput.placeholder = "Option Price (Ex. 299)";
+
+  // Create new remove button
+  const newButton = document.createElement("button");
+  newButton.classList.add("remove-option");
+  newButton.textContent = "Remove";
+
+  // Create new wrapper divs for the option and price inputs
+  const newOptionDiv = document.createElement("div");
+  newOptionDiv.classList.add("option-div");
+  newOptionDiv.appendChild(newInput);
+
+  const newPriceDiv = document.createElement("div");
+  newPriceDiv.classList.add("price-div");
+  newPriceDiv.appendChild(newPriceInput);
+
+  // Create new wrapper div for the option and price divs
+  const newOptionAndPriceWrapper = document.createElement("div");
+  newOptionAndPriceWrapper.classList.add("option-and-price-wrapper");
+  newOptionAndPriceWrapper.appendChild(newOptionDiv);
+  newOptionAndPriceWrapper.appendChild(newPriceDiv);
+  newOptionAndPriceWrapper.style.display = "inline-block";
+
+  newOptionWrapper.appendChild(newButton);
+  newOptionWrapper.appendChild(newOptionAndPriceWrapper);
+
+  const newPriceNote = document.createElement("p");
+  newPriceNote.textContent = "*Disregard the Price field if it doesn't have a price";
+  newPriceNote.classList.add('hideNote')
+  newOptionWrapper.appendChild(newPriceNote);
+
+  // Add new option wrapper to options div
+  optionsDiv.insertBefore(newOptionWrapper, document.getElementById("AddMoreOp"));
+
+  // Add event listener to input elements to update optionsArray
+  const index = Array.from(optionsDiv.children).indexOf(newOptionWrapper);
+  newInput.addEventListener("input", function() {
+    optionsArray.splice(index, 1, {
+      option: newInput.value,
+      price: newPriceInput.value
+    });
+  });
+  newPriceInput.addEventListener("input", function() {
+    optionsArray.splice(index, 1, {
+      option: newInput.value,
+      price: parseInt(newPriceInput.value)
+    });
+  });
+
+  // Add event listener to remove button to update optionsArray
+  newButton.addEventListener("click", function() {
+    optionsArray.splice(index, 1);
+    newOptionWrapper.remove();
+  });
+});
+
+const optionsDiv1 = document.getElementById("options1");
+const optionsArray1 = [];
+
+document.getElementById("AddMoreOp1").addEventListener("click", function() {
+  // Create new option wrapper div
+  const newOptionWrapper = document.createElement("div");
+  newOptionWrapper.classList.add("option-wrapper");
+
+  // Create new input elements
+  const newInput = document.createElement("input");
+  newInput.type = "text";
+  newInput.name = "option";
+  newInput.placeholder = "Option Name  (Ex. Small)";
+  
+  const newPriceInput = document.createElement("input");
+  newPriceInput.type = "text";
+  newPriceInput.name = "price";
+  newPriceInput.id = "priceInput"
+  newPriceInput.placeholder = "$00.00";
+
+  // Create new remove button
+  const newButton = document.createElement("button");
+  newButton.classList.add("remove-option");
+  newButton.textContent = "Remove";
+
+  // Create new wrapper divs for the option and price inputs
+  const newOptionDiv = document.createElement("div");
+  newOptionDiv.classList.add("option-div");
+  newOptionDiv.appendChild(newInput);
+
+  const newPriceDiv = document.createElement("div");
+  newPriceDiv.classList.add("price-div");
+  newPriceDiv.appendChild(newPriceInput);
+
+  // Create new wrapper div for the option and price divs
+  const newOptionAndPriceWrapper = document.createElement("div");
+  newOptionAndPriceWrapper.classList.add("option-and-price-wrapper");
+  newOptionAndPriceWrapper.appendChild(newOptionDiv);
+  newOptionAndPriceWrapper.appendChild(newPriceDiv);
+  newOptionAndPriceWrapper.style.display = "inline-block";
+
+  newOptionWrapper.appendChild(newButton);
+newOptionWrapper.appendChild(newOptionAndPriceWrapper);
+
+const newPriceNote = document.createElement("p");
+  newPriceNote.textContent = "*Disregard the Price field if it doesn't have a price";
+  newPriceNote.classList.add('hideNote')
+  newOptionWrapper.appendChild(newPriceNote);
+  // Add new option wrapper to options div
+  optionsDiv1.insertBefore(newOptionWrapper, document.getElementById("AddMoreOp1"));
+
+  // Add event listener to input elements to update optionsArray
+  const index = Array.from(optionsDiv1.children).indexOf(newOptionWrapper);
+  newInput.addEventListener("input", function() {
+    optionsArray1.splice(index, 1, {
+      option: newInput.value,
+      price: newPriceInput.value
+    });
+  });
+  newPriceInput.addEventListener("input", function() {
+    optionsArray1.splice(index, 1, {
+      option: newInput.value,
+      price: !isNaN(newPriceInput.value) ?  parseInt(newPriceInput.value) : ''
+    });
+    
+  });
+
+  // Add event listener to remove button to update optionsArray
+  newButton.addEventListener("click", function() {
+    optionsArray1.splice(index, 1);
+    newOptionWrapper.remove();
+  });
+});
+
+// Add event listener to remove buttons
+// optionsDiv1.addEventListener("click", function(event) {
+//   if (event.target.classList.contains("remove-option")) {
+//     const wrapperDiv = event.target.parentNode;
+//     const index = Array.from(optionsDiv1.children).indexOf(wrapperDiv);
+//     optionsArray1.splice(index, 1);
+//     wrapperDiv.remove();
+//   }
+// });
+
+// document.getElementById('testing').addEventListener("click", function(event) {
+//   console.log(optionsArray1)
+
+// })
+// var options = document.querySelectorAll('#options input');
+
+
+
+// options.forEach(function(option) {
+//   optionsArray.push(option.value);
+// });
+
+
+
+    var Files = [];
+    var FileReaders = [];
+    var ImageLinksArray = [];
+
+    const imgdiv = document.getElementById('imagesDiv'); 
+    const selBtn = document.getElementById('selimgsbtn'); 
+    const addBtn = document.getElementById('addprodbtn'); 
+    const proglab = document.getElementById('load'); 
+    const impNote = document.getElementById('note');
+    const name = document.getElementById('name'); 
+    const category = document.getElementById('category'); 
+    const description = document.getElementById('desc'); 
+    const price = document.getElementById('price'); 
+    const stock = document.getElementById('stock'); 
+    const selName = document.getElementById('selName');
+    const selName1 = document.getElementById('selName1')
+    function OpenFileDialog(){
+    let inp = document.createElement('input');
+    inp.type = 'file';
+    inp.multiple='multiple';
+
+    inp.onchange = (e) => {
+        AssignImgsToFilesArray(e.target.files);
+        CreateImgTags();
+    }
+    inp.click();
+}
+
+function AssignImgsToFilesArray(thefiles){
+    for(let i = 0; i < thefiles.length; i++){
+        Files.push(thefiles[i]);
+    }
+}
+
+    
+function CreateImgTags(){
+  imgdiv.innerHTML="";
+  imgdiv.classList.add('imagesDivStyle'); 
+
+  for (let i = 0; i < Files.length; i++){
+    FileReaders[i] = new FileReader();
+
+    FileReaders[i].onload = function(){
+      var img = document.createElement("img");
+      img.id = 'imgNo' + i;
+      img.classList.add('imgs');
+      img.src= FileReaders[i].result;
+
+      // create a container for the image and the "X" button
+      var imgContainer = document.createElement("div");
+      imgContainer.classList.add('imgContainer');
+      imgContainer.append(img);
+      impNote.style.display = "block"
+      // create the "X" button and add a click listener to remove the image
+      var removeBtn = document.createElement("button");
+      removeBtn.classList.add('removeBtn');
+      removeBtn.innerHTML = "X";
+      removeBtn.addEventListener("click", function(){
+        Files.splice(i, 1);
+        ImageLinksArray.splice(i, 1);
+        imgContainer.remove();
+      });
+      imgContainer.append(removeBtn);
+
+      imgdiv.append(imgContainer);
+    }
+
+    FileReaders[i].readAsDataURL(Files[i]);
+  }
+  
+}
+
+
+function ClearImages() {
+    files = [];
+    ImageLinksArray = []; 
+    imgdiv.innerHTML='';
+    imgdiv.classList.remove('imagesDivStyle');
+}
+
+//Events 
+function getShortTitle(){
+    let namey = name.value.substring(0,50);
+return namey.replace(/[^a-zA-Z0-9]/g,"");
+}
+
+function GetImgUploadProgress(){
+    return 'Images Uploaded' + " " + ImageLinksArray.length + " " + 'of' + " " + Files.length;
+}
+
+    function IsAllImagesUploaded(){
+        return ImageLinksArray.length == Files.length; 
+    }
+  
+
+
+
+function RestoreBack(){
+    selBtn.disabled = false;
+    addBtn.disabled = false;
+}
+ 
+//buttons
+
+selBtn.addEventListener('click', OpenFileDialog);
+
+
+
+//push img to firebase
+
+function UploadAllImgs(){
+    selBtn.disabled = true;
+    addBtn.disabled = true;
+
+ImageLinksArray=[];
+
+    for(let i = 0; i < Files.length; i++) {
+UploadAnImg(Files[i], i);
+    }
+}
+addBtn.addEventListener('click', function(e) {
+    e.preventDefault()
+if(name.value == "") {
+    swal({
+title: "Opps!",
+text: 'Input Fields can not be empty. Please Try Again.',
+type: "error",
+
+showConfirmButton: true,
+
+})
+
+    return false;
+}
+
+
+else if(stock.value == "") {
+    swal({
+title: "Opps!",
+text: 'Input Fields can not be empty. Please Try Again.',
+type: "error",
+
+showConfirmButton: true,
+
+})
+
+    return false;
+}
+
+else if(!Number.isInteger(parseInt(stock.value))) {
+
+    swal({
+title: "Opps!",
+text:"Invalid input type detected. Please enter a valid number for the \"Quantity\" and try again.",
+
+type: "error",
+
+showConfirmButton: true,
+
+})
+    return false;
+}
+else if (!Number.isInteger(Number(stock.value))) {
+
+swal({
+title: "Opps!",
+text: "Invalid input type, \"Quantity\" should be a whole number. Please try again.",
+
+type: "error",
+
+showConfirmButton: true,
+
+})
+} else if(description.value == "") {
+    swal({
+title: "Opps!",
+text: 'Input Fields can not be empty. Please Try Again.',
+type: "error",
+
+showConfirmButton: true,
+
+})
+
+    return false;
+} else if(Files.length === 0) {
+    swal({
+      title: "Opps!",
+      text: "Please select at least one image to upload.",
+      type: "error",
+      showConfirmButton: true,
+    });
+    return false;
+} else if(Files.length > 10) {
+    swal({
+                      title: 'Oops!',
+                      text: "Inserting images for your product has a limitation that allows a maximum of 10 images. Please Try Again.",
+                      type: "error"
+                    })
+                    return false;
+}
+else {
+
+   
+UploadAllImgs();
+
+
+
+
+}
+
+});
+function UploadAnImg(imgToUpload, imgNo){
+const metadata = {
+contentType: imgToUpload.type
+};
+
+const storage = getStorage();
+
+const ImageAddress="Product_Images/"+ getShortTitle()+"/img#"+ (imgNo+1);
+
+const storageRef = sRef(storage, ImageAddress);
+
+const UploadTask = uploadBytesResumable(storageRef, imgToUpload, metadata);
+
+UploadTask.on('state_changed', (snapshot) =>{
+proglab.innerHTML = GetImgUploadProgress();
+},
+
+(error)=>{
+alert("error: image upload failed")
+},
+
+()=>{
+    getDownloadURL(UploadTask.snapshot.ref).then((DownloadURL) =>{
+ImageLinksArray.push(DownloadURL);
+
+
+if(IsAllImagesUploaded()){
+    proglab.innerHTML = "Succesful";
+    UploadAProduct();
+}
+
+
+    });
+   
+});
+
+}
+
+
+//imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword,  signOut, sendSignInLinkToEmail, onAuthStateChanged, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL}
+  from"https://www.gstatic.com/firebasejs/9.13.0/firebase-storage.js"
+
+  import { getDatabase, set, ref, child, get, update, onValue}
+   from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+  
+const firebaseConfig = {
+  apiKey: "AIzaSyCtisSJKA9OIYxI3B9tbtWEGg0PKiI0Vks",
+    authDomain: "loginpage-fa237.firebaseapp.com",
+    databaseURL: "https://loginpage-fa237-default-rtdb.firebaseio.com",
+    projectId: "loginpage-fa237",
+    storageBucket: "loginpage-fa237.appspot.com",
+    messagingSenderId: "709059025327",
+    appId: "1:709059025327:web:a45e1c21fc088473fd375a",
+    measurementId: "G-3664V8SZKB"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+
+ 
+
+   const database = getDatabase();
+   const auth = getAuth();
+
+   const catRef = ref(database, 'Categories/');
+
+
+onValue(catRef, (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        const categoryRef = childSnapshot.val();
+        const categoryId = childSnapshot.key;
+console.log(categoryRef)
+
+   category.innerHTML += `
+   <select>
+   <option value"${categoryRef.Category_Name}" data-category-id="${categoryId}">${categoryRef.Category_Name}</option>
+   </select>
+   `
+})
+})
+   function UploadAProduct(){
+
+    
+    onAuthStateChanged(auth, (user) => {
+        const sellerID = user.uid
+        const selectedOption = category.options[category.selectedIndex];
+  const selectedCategoryId = selectedOption.getAttribute('data-category-id');
+        const sellerRef = ref(database, `Seller/${sellerID}/Shop_Name`);
+        const selValue = selName.value
+        const sel1Value = selName1.value
+        onValue(sellerRef, (snapshot) => {
+          const shopName = snapshot.val();
+          console.log(shopName)
+          
+        let randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        const Product_Specifications = {};
+if(optionsArray.length > 0){
+  Product_Specifications[selValue] = {
+    Options: optionsArray
+  };
+}
+if(optionsArray1.length > 0){
+  Product_Specifications[sel1Value] = {
+    Options: optionsArray1
+  };
+}
+
+var now = new Date();
+var options = { 
+  hour: 'numeric', 
+  minute: 'numeric', 
+  hour12: true 
+};
+
+
+var time = now.toLocaleString('en-US', options);
+var date = now.toLocaleDateString('en-US');
+var dateTime = time + ' ' + date;
+
+        update(ref(database, `Categories/${selectedCategoryId}/Items/${randomString}`),{
+Product_Name: name.value,
+Price: price.value !== '' ? parseInt(price.value) : '',
+
+Stock: stock.value,
+Description: description.value,
+Main_image: ImageLinksArray[0],
+Product_images: ImageLinksArray,
+Seller: shopName,
+Seller_ID: user.uid,
+Sold: 0,
+Date: dateTime,
+Product_Specifications
+    });
+
+        
+
+    swal({
+        title: "Success",
+text: "Product Added Successfully! The ID of the added product is" + " " + randomString,
+type: "success",
+showConfirmButton: true,
+
+
+}, function () {
+    RestoreBack();
+//   window.location = "addedproducts.html"
+   window.location = "addedproducts.html"
+    });
+
+})
+})
+   }
+
+
+   
+</script>
+
+</body>
+</html>
+
+
+

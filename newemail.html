@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+    <title>Document</title>
+    <style>
+       .button {
+      box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+  margin: auto;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 50px;
+  width: 100%;
+	text-decoration:none;
+  padding-top: 10px;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.button:hover {
+  background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+button:active {
+          position:relative;
+	top:1px;
+        }
+
+ * {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  background-image: url('images/bgg.png');
+  
+  
+  background-size:cover;
+  font-family:  helvetica, arial, sans-serif;
+  font-size: 1.5em;
+ 
+}
+ 
+@-webkit-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-moz-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-ms-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@-o-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+ 
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+
+
+
+.login-form {
+
+  width: 100%;
+  padding: 2em;
+  border-radius: 20px;
+  position: relative;
+  background: rgba(52, 45, 51, 0.85);
+  
+}
+.login-form:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+ 
+}
+@media screen and (min-width: 600px) {
+  .login-form {
+    width: 50vw;
+    max-width: 15em;
+  }
+}
+
+.flex-row {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.lf--label {
+  width: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f6f8;
+  cursor: pointer;
+}
+
+.lf--input {
+  flex: 1;
+  padding: 1em;
+  border: 0;
+  color: black;
+  font-size: 1rem;
+}
+.lf--input:focus {
+  outline: none;
+  transition: transform 0.15s ease;
+  transform: scale(1.1);
+}
+
+.lf--submit {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  background: linear-gradient(to right, #35c3c1, #00d6b7);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.lf--submit:focus {
+  outline: none;
+  transition: transform 0.15s ease;
+  transform: scale(1.1);
+}
+
+.lf--signup {
+  font-weight: bold;
+  margin-top: 1em;
+  color: white;
+  font-size: 0.65em;
+  text-align: center;
+  position: relative;
+  left: 2%;
+  text-decoration: none;
+  bottom: 40%;
+}
+.lf--forgot {
+  font-weight: bold;
+  margin-top: 1em;
+  color: white;
+  font-size: 0.65em;
+  text-align: center;
+  position: relative;
+  left: 60%;
+  text-decoration: none;
+  bottom: 10%;
+}
+::-moz-placeholder {
+  color: #8f8f8f;
+}
+
+:-ms-input-placeholder {
+  color: #8f8f8f;
+}
+
+::placeholder {
+  color: #8f8f8f;
+}
+.showPass {
+  position: absolute;
+  right: 85%;
+  bottom: 36%;
+  
+  
+}
+form i {
+  margin-left: -20px;
+    display: block;
+    padding-left: 10px;
+    margin: auto;
+    cursor: pointer;
+    border: 11.6px solid white;
+    background-color: white;
+    
+}
+h1 {
+  left: 39%;
+  text-align: center;
+  position: absolute;
+  bottom: 80%;
+  font-size:larger;
+  color:white;
+}
+img {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+h3 {
+    text-align: center;
+    color: white;
+}
+p{
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+.em {
+    width: 30px;
+}
+.fa-arrow-circle-left {
+          
+          box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+  
+    text-align: center;
+	cursor:pointer;
+	color:#ffffff;
+	font-weight: bold;
+    font-size: 18px;
+	padding:2px 15px;
+  width: 5%;
+	
+  
+	
+
+        }
+        .fa-arrow-circle-left:hover {
+          background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+        }
+        .fa-arrow-circle-left:active {
+          position:relative;
+	top:1px;
+        }
+        .fa-arrow-left1 {
+            text-shadow:0px 1px 0px #528ecc;
+            padding:10px 20px;
+            padding-top: 2px;
+            box-shadow: 3px 4px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+  font-size: 10px;
+  text-align: center;
+  
+            height: 10px;
+  width: 5%;
+            border-radius: 5px;
+            padding-left: 0px;
+        }
+        .fa-arrow-left i {
+            width: 200%;
+        }
+</style>
+</head>
+<body>
+
+    
+<form class='login-form'>
+    <i class="fas fa-arrow-circle-left" id="back"></i>
+    
+  <img src="images/changeem.png" alt="">
+ 
+  <h3>Change Email</h3>
+  <p> Enter your new email and we will send a link to verify it.</p>
+  <br>
+  <div class="flex-row">
+    
+    <label class="lf--label" for="email">
+      <svg x="0px" y="0px" width="2px" height="13px">
+        <img class="em" src="images/email.png" width="50" height="30">
+      </svg>
+      
+    </label>
+   
+    <input id="email" name="email" class='lf--input' placeholder='Email' type='email'>
+  </div>
+  
+ 
+  <button type="button" id="submitData" name="submitData" class="button">Send
+    <div class="button__horizontal"></div>
+    <div class="button__vertical"> </div>
+    </button>
+    
+</form>
+<script>
+
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCtisSJKA9OIYxI3B9tbtWEGg0PKiI0Vks",
+    authDomain: "loginpage-fa237.firebaseapp.com",
+    databaseURL: "https://loginpage-fa237-default-rtdb.firebaseio.com",
+    projectId: "loginpage-fa237",
+    storageBucket: "loginpage-fa237.appspot.com",
+    messagingSenderId: "709059025327",
+    appId: "1:709059025327:web:a45e1c21fc088473fd375a",
+    measurementId: "G-3664V8SZKB"
+  };
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    // Store the user's current email address
+    var originalEmail = user.email;
+
+    // Update the user's email address to a temporary email address
+    user.updateEmail("temp@example.com")
+      .then(() => {
+        // Send a verification email to the temporary email address
+        firebase.auth().sendEmailVerification()
+          .then(() => {
+            // Update the user's email address back to the original email address
+            user.updateEmail(originalEmail)
+              .then(() => {
+                console.log("Email un-verified and changed back to original email");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    // No user is signed in.
+    console.log("User not signed in");
+  }
+});
+
+  
+  
+  
+</script>
+</body>
+</html>
