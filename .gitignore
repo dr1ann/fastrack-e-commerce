@@ -1,0 +1,5 @@
+# Ignore all files and directories
+*
+
+# Include the README.md file
+!README.md
